@@ -1,0 +1,70 @@
+{
+  "pages": [
+    "pages/me/me",
+    "pages/order/order",
+    "pages/shoppingCart/shoppingCart",
+    "pages/home/home",
+    "pages/index/index",
+    "pages/newView/newView",
+    "pages/userConsole/userConsole",
+    "pages/storageConsole/storageConsole",
+    "pages/databaseGuide/databaseGuide",
+    "pages/addFunction/addFunction",
+    "pages/deployFunctions/deployFunctions",
+    "pages/chooseLib/chooseLib",
+    "pages/openapi/openapi",
+    "pages/openapi/serverapi/serverapi",
+    "pages/openapi/callback/callback",
+    "pages/openapi/cloudid/cloudid",
+    "pages/im/im",
+    "pages/im/room/room"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "云开发 QuickStart",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#E6E6FA",
+    "borderStyle": "white",
+    "color": "#090909",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/home/home",
+        "text": "首页",
+        "iconPath": "images/tarBar/home.png",
+        "selectedIconPath": "images/tarBar/s-home.png"
+      },
+      {
+        "pagePath": "pages/newView/newView",
+        "text": "创视界",
+        "iconPath": "images/tarBar/newView.png",
+        "selectedIconPath": "images/tarBar/s-newView.png"
+      },
+      {
+        "pagePath": "pages/shoppingCart/shoppingCart",
+        "text": "购物车",
+        "iconPath": "images/tarBar/shop.png",
+        "selectedIconPath": "images/tarBar/s-shop.png"
+      },
+      {
+        "pagePath": "pages/me/me",
+        "text": "个人中心",
+        "iconPath": "images/tarBar/me.png",
+        "selectedIconPath": "images/tarBar/s-me.png"
+      },
+      {
+        "pagePath": "pages/index/index",
+        "text": "index"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2",
+  "useExtendedLib": {
+    "weui": true
+  }
+}

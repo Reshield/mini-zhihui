@@ -1,0 +1,52 @@
+<!--pages/shoppingCart/shoppingCart.wxml-->
+<!-- 还未获取购物车列表子元素的序列号 -->
+
+<view class="commodity-list">
+  <scroll-view scroll-x class="scroll-view_H" bindscroll="scroll" style="width:100%">
+    <view class="scroll-view" wx:for="{{commodities}}" wx:key="id" wx:for-index="index">
+      <view class="commodity-cart" id='{{item.id}}' data-name='{{item.name}}'>
+        <icon class="delete-cart" type="cancel" size="24"></icon>
+        <image 
+          mode="widthFix"
+          src="{{item.image}}" 
+          class="commodity-image"
+        ></image>
+        <view class="split-line"></view>
+        <view class="commodity-name">{{item.name}}</view>
+        <view class="commodity-price">￥{{item.price}}</view>
+        <view class="number-box">
+          <view class="number-reduce" bindtap="numberReduce" data-index="{{index}}">
+            <image mode="widthFix" src="../../images/icon/reduce-icon.png" style="width: 80%"></image>
+          </view>
+          <view class="number-show">{{item.number}}</view>
+          <view class="number-add" bindtap="numberAdd" data-index="{{index}}">
+            <image mode="widthFix" src="../../images/icon/add-icon.png" style="width: 80%"></image>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+</view>
+
+<view class="price-box">
+  <view class="price-total">
+    <view class="total">合计</view>
+    <view class="total-number">￥{{total}}</view>
+  </view>
+  <view class="price-coupon">
+    <view class="coupon">折扣</view>
+    <view class="coupon-number">￥{{coupon}}</view>
+  </view>
+  <view class="price-finally">
+    <view class="coupon">实付</view>
+    <view class="coupon-number">￥{{finally}}</view>
+  </view>
+</view>
+
+<view class="cart-footer">
+  <view class="footer-radio">
+    <mp-icon type="field" icon="done2" color="{{selectAll ? '#FF6539' : '#cccccc'}}" size="{{30}}" bindtap="selectAll"></mp-icon>
+    全选
+  </view>
+  <view class="footer-button">去支付</view>
+</view>

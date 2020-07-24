@@ -1,0 +1,93 @@
+/* pages/home/home.wxss */
+.homeNav {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid	#DCDCDC;
+}
+
+.nav-search {
+  margin-left: 3%;
+}
+
+.homeSpecies {
+  color: #000000;
+}
+
+.nav-arrow {
+  width: 30rpx;
+  height: 30rpx;
+}
+
+.nav-bag {
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 3%;
+}
+
+.commodityList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5%;
+}
+
+.commodityCart {
+  width: 80%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 20rpx;
+  box-shadow: 0rpx 0rpx 10rpx rgba(0,0,0, 0.6);
+}
+
+.cartIcon {
+  width: 60rpx;
+  height: 60rpx;
+  position: relative;
+  margin-bottom: -60rpx;
+  margin-left: 90%;
+}
+
+.commodityImage {
+  margin-top: 60rpx;
+}
+
+.commodityDetail {
+  margin-top: -80rpx;
+  width: 100%;
+  background-color: rgba(0,0,0, 0.6);
+  border-radius: 0rpx 0rpx 20rpx 20rpx;
+}
+
+.detailTop {
+  display: flex;
+  flex-direction: column;
+  padding-left: 5%;
+}
+
+.commodityName {
+  color: #ffffff;
+  font-size: larger;
+}
+
+.commodityPrice {
+  color: #ffffff;
+}
+
+.sort-page {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 5;
+}
+
+.close-sort {
+  position: fixed;
+  width: 50rpx;
+  height: 50rpx;
+  right: 20rpx;
+  top: 20rpx;
+}

@@ -1,0 +1,52 @@
+/* pages/me/me.wxss */
+
+.me-header {
+  background-color: #2A82E4;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+.me-user {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-left: 3%;
+}
+
+.avatar {
+  display: block;
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 100rpx;
+}
+
+.user-text {
+  margin-left: 20rpx;
+}
+
+.user-name, .user-description {
+  color: #ffffff;
+  font-size: 30rpx;
+}
+
+.iform-box {
+  position: absolute;
+  right: 3%;
+  top: 3%;
+}
+
+.order-box {
+  margin-left: 2%;
+  background-color: #ffffff;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.order-icon {
+  width: 100rpx;
+}

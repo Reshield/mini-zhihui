@@ -1,0 +1,25 @@
+<!--pages/me/me.wxml-->
+<view class="me-header">
+  <view class="me-user">
+    <image src="{{avatar}}" class="avatar"></image>
+    <view class="user-text">
+      <view class="user-name">{{username}}</view>
+      <view class="user-description">{{description}}</view>
+    </view>
+  </view>
+  <view class="iform-box">
+    <mp-badge content="{{eNumber}}"/>
+    <mp-icon icon="email" type="field" color="black" size="{{25}}" color="#ffffff" class="email"></mp-icon>
+  </view>
+</view>
+
+<mp-cells>
+  <mp-cell link hover value="我的订单" footer="全部订单" bindtap="toOrder" ></mp-cell>
+</mp-cells>
+
+<view class="order-box">
+  <image src="../../images/icon/be-paid.png" class="order-icon" mode="widthFix"></image>
+  <image src="../../images/icon/be-comment.png" class="order-icon" mode="widthFix"></image>
+  <image src="../../images/icon/receive.png" class="order-icon" mode="widthFix"></image>
+  <image src="../../images/icon/after-sales.png" class="order-icon" mode="widthFix"></image>
+</view>

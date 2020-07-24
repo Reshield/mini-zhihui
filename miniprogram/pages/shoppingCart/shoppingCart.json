@@ -1,0 +1,7 @@
+{
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "购物车",
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon"
+  }
+}

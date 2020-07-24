@@ -1,0 +1,10 @@
+<!--pages/order/order.wxml-->
+<mp-tabs 
+  tabs="{{tabs}}" 
+  activeTab="{{activeTab}}" 
+  swiperClass="weui-tabs-swiper"
+  bindtabclick="onTabClick"
+  bindchange="onChange"
+  activeClass="tab-bar-title__selected"
+>
+</mp-tabs>

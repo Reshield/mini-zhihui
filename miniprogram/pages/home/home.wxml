@@ -1,0 +1,32 @@
+<!--pages/home/home.wxml-->
+<view class="homeNav">
+  <icon class="nav-search" type="search" size="20" color="#000000"></icon>
+  <view class="homeSpecies"  bindtap="openSort">
+    {{species}}
+    <image src="../../images/icon/arrowDown.png" class="nav-arrow"></image>
+  </view>
+  <image src="../../images/icon/shopBag.png" class="nav-bag"></image>
+</view>
+
+<view class="commodityList" wx:for="{{commoditiesList}}" wx:key="_id">
+  <view class="commodityCart">
+    <image src="../../images/icon/s-cart-icon.png" class="cartIcon"></image>
+    <image 
+      src="{{item.images[0]}}"
+      mode="aspectFit"
+      class="commodityImage"
+    ></image>
+    <view class="commodityDetail">
+      <view class="detailTop">
+        <view class="commodityName">{{item.name}}</view>
+        <view class="commodityPrice">￥{{item.price}}</view>
+      </view>
+      <view class="detailBottom">
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="sort-page" hidden="{{showSort}}">
+  <image src="../../images/icon/close-sort.png" class="close-sort" bindtap="closeSort"></image>
+</view>
