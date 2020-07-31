@@ -27,11 +27,28 @@
   <mp-cell value="用户评价 ({{commentNum}})" link="true">
   </mp-cell>
 </mp-cells>
+
 <view class="comment-box">
   <view class="comment-user">
-    <image src="{{comment.avatar}}"></image>
+    <image src="{{comment.avatar}}" class="user-avatar"></image>
     <view class="user-name">{{comment.userName}}</view>
   </view>
+  <view class="comment-text">
+    {{comment.commentText}}
+  </view>
 </view>
+
+<view class="swiper-tab" id="swiperTab">
+  <block wx:for="{{tabItems}}" wx:key="title">
+    <view class="tab-item {{currentId == item.id ? 'active': ''}}" bindtap="clickTab" id="{{item.id}}">{{item.title}}</view>
+  </block>
+</view>
+<swiper current="currentId" style="height: 1000px">
+  <swiper-item>
+    <block wx:for="{{commodity.images}}" wx:key="*this">
+      <image src="{{item}}" mode="widthFix" style="width: 100%;" id="abc"></image>
+    </block>
+  </swiper-item>
+</swiper>
 
 

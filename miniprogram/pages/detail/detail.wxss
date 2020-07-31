@@ -31,3 +31,50 @@ page {
   width: 100%;
   background-color: #ffffff;
 }
+
+.comment-user {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  margin-left: 4%;
+  margin-top: 2%;
+}
+
+.comment-user {
+  width: 100%;
+}
+
+.user-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 40rpx;
+}
+
+.user-name {
+  margin-left: 2%;
+}
+
+.comment-text {
+  margin-top: 2%;
+  margin-left: 4%;
+}
+
+.swiper-tab {
+  width: 100%;
+  background-color: #ffffff;
+  border-bottom: 2rpx solid #cccccc;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  margin-top: 2%;
+}
+
+.tab-item{
+  color:#434343;
+}
+
+.active{
+  color:#FF703A;
+  border-bottom: 4rpx solid #FF703A;
+}

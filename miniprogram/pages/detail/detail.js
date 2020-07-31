@@ -10,7 +10,13 @@ Page({
     swipers: [],
     commodity: {},
     commentNum: 0,
-    comment: {}
+    comment: {},
+    tabItems: [
+      {id: 0, title: "商品详情"},
+      {id: 1, title: "参数"}
+    ],
+    currentId: 0,
+    swiperHeight: 0
   },
   // 获取商品信息
   getCommodity(id) {
@@ -49,12 +55,39 @@ Page({
         res => {
           comment.userName = res.data['0'].userName
           comment.avatar = res.data['0'].avatar
+          that.setData({
+            comment
+          })
         }
       )
+    })
+  },
+  // 切换 tabs 
+  clickTab: function(e) {
+    let that = this
+    if(this.data.currentId === e.currentTarget.id) {
+      return false;
+    }
+    else {
       that.setData({
-        comment
+        currentId: e.currentTarget.id
       })
-      console.log(this.data.comment)
+    }
+  },
+  // 设置 swiper 高度
+  setSwiperHeight() {
+    function getBoxHeight() {
+      return new Promise((resolve, reject) => {
+        const query = wx.createSelectorQuery()
+        query.select('#abc').boundingClientRect(res => {
+          console.log(res)
+          resolve(res)
+        }).exec()
+      })
+    }
+    getBoxHeight()
+    .then(res => {
+      console.log('555 ' + res)
     })
   },
   /**
@@ -78,9 +111,8 @@ Page({
       })
       return this.getUser(res)
     })
-    
+    this.setSwiperHeight()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
