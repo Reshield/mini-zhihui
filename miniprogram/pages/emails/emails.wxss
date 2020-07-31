@@ -1,0 +1,30 @@
+/* pages/emails/emails.wxss */
+page {
+  background-color: #F5F5F5;
+}
+
+.email-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.email-detial {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  background-color: #ffffff;
+  margin-top: 2%;
+  border-radius: 20rpx;
+  padding: 5%
+}
+
+.title {
+  font-size: 28rpx;
+}
+
+.detial {
+  margin-top: 2%;
+  font-size: 24rpx;
+  color: #6B6B6B;
+}

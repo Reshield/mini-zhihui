@@ -1,0 +1,13 @@
+<!--pages/emails/emails.wxml-->
+<block wx:for="{{emailsData}}" wx:key="id">
+  <mp-slideview buttons="{{slideButtons}}" bindbuttontap="slideButtonTap">
+    <view class="email-box">
+      <mp-icon icon="voice" color="{{item.color}}" size="{{20}}"></mp-icon>
+      <view class="email-detial">
+        <view class="title">{{item.title}}</view>
+        <view class="detial">{{item.detail}}</view>
+        <view class="date">{{item.date}}</view>
+      </view>
+    </view>
+  </mp-slideview>
+</block>

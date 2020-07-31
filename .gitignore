@@ -1,3 +1,6 @@
 # node_modules 忽略 node_modules 目录
 *node_modules/*
 node_modules/
+# miniprogram_npm 忽略 miniprogram_npm 目录
+*miniprogram_npm/*
+miniprogram_npm/

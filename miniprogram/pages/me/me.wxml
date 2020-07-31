@@ -7,7 +7,7 @@
       <view class="user-description">{{description}}</view>
     </view>
   </view>
-  <view class="iform-box">
+  <view class="iform-box" bindtap="toEmails">
     <mp-badge content="{{eNumber}}"/>
     <mp-icon icon="email" type="field" color="black" size="{{25}}" color="#ffffff" class="email"></mp-icon>
   </view>
@@ -18,8 +18,20 @@
 </mp-cells>
 
 <view class="order-box">
-  <image src="../../images/icon/be-paid.png" class="order-icon" mode="widthFix"></image>
-  <image src="../../images/icon/be-comment.png" class="order-icon" mode="widthFix"></image>
-  <image src="../../images/icon/receive.png" class="order-icon" mode="widthFix"></image>
-  <image src="../../images/icon/after-sales.png" class="order-icon" mode="widthFix"></image>
+  <view class="icon-box">
+    <image src="../../images/icon/be-paid.png" class="order-icon" mode="widthFix"></image>
+    待付款
+  </view>
+  <view class="icon-box">
+    <image src="../../images/icon/receive.png" class="order-icon" mode="widthFix"></image>
+    待收货
+  </view>
+  <view class="icon-box">
+    <image src="../../images/icon/be-comment.png" class="order-icon" mode="widthFix"></image>
+    待评价
+  </view>
+  <view class="icon-box">
+    <image src="../../images/icon/after-sales.png" class="order-icon" mode="widthFix"></image>
+    退换修
+  </view>
 </view>

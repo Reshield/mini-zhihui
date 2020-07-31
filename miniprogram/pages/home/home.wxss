@@ -91,3 +91,9 @@
   right: 20rpx;
   top: 20rpx;
 }
+
+.search {
+  position: fixed;
+  left: 10%;
+  width: 80%;
+}

@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-slideview": "weui-miniprogram/slideview/slideview"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "消息通知"
+}

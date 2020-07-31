@@ -1,4 +1,6 @@
 // pages/home/home.js
+const app = getApp()
+
 Page({
   
   /**
@@ -7,8 +9,8 @@ Page({
   data: {
     species: "居家好物",
     commoditiesList: [],
-    commodityImage: "cloud://mini-zhihui-fmj55.6d69-mini-zhihui-fmj55-1302661879/commoditisImages/001.jpg",
-    showSort: true
+    showSort: true,
+    displaySearch: false
   },
   // 弹出层操作
   openSort: function () {
@@ -21,28 +23,35 @@ Page({
       showSort: ! this.data.showSort
     })
   },
-  tapDialogButton(e) {
-    this.setData({
-      dialogShow: false,
-      showOneButtonDialog: false
-    })
-  },
   // 获取商品列表
   getCommodities: function() {
-    const db = wx.cloud.database()
-    db.collection('commoditis').get({
-      success: res => {
-        console.log(res)
-        this.setData({
-          commoditiesList: res.data
+    let that = this
+    app.getInfoByOrder('commoditis', 'time', 'desc',
+      e => {
+        that.setData({
+          commoditiesList: e.data,
         })
-      },
-      fail: err => {
-        console.error(err)
+        wx.hideLoading()
       }
+    )
+  },
+  // 跳转至详情
+  toDetail(e) {
+    let _id = e.currentTarget.id
+    wx.navigateTo({
+      url: '../detail/detail?id=' + _id,
     })
   },
-
+  showSearch() {
+    this.setData({
+      displaySearch: true
+    })
+  },
+  closeSearch(e) {
+    this.setData({
+      displaySearch: false
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

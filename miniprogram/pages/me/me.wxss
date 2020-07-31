@@ -40,13 +40,22 @@
 }
 
 .order-box {
+  padding-top: 10rpx;
   margin-left: 2%;
   background-color: #ffffff;
   width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: space-around;
+}
+
+.icon-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 32rpx;
 }
 
 .order-icon {
-  width: 100rpx;
+  width: 50%;
 }

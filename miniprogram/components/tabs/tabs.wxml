@@ -1,0 +1,28 @@
+<!--components/tabs/tabs.wxml-->
+<view class="swiper-tab">
+  <block wx:for="{{tabItems}}" wx:key="title">
+    <view class="tab-item {{currentId == item.id ? 'active': ''}}" bindtap="clickTab" id="{{item.id}}">{{item.title}}</view>
+  </block>
+</view>
+
+<swiper current="{{currentId}}" style="height: {{ windowHeight }}px">
+  <swiper-item style="height: {{ windowHeight }}+'px'">
+    <block wx:for="{{swiperItem}}" wx:key="id">
+      <view class="order-box" >
+        <view class="order-statu">
+          <view class="order-date">{{item.date}}</view>
+          <view class="order-send">{{item.send}}</view>
+        </view>
+        <block wx:for="{{item.commodities}}" wx:key="id">
+          <view class="order-commodities">
+            <image src="{{item.image}}" class="cmd-image"></image>
+            <view class="cmd-text">
+              <view class="cmd-name">{{item.name}}</view>
+              <view class="cmd-property">{{item.property}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </block>
+  </swiper-item>
+</swiper>

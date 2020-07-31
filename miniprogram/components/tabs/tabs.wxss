@@ -1,8 +1,4 @@
-/* pages/order/order.wxss */
-page {
-  background-color: #F5F5F5;
-}
-
+/* components/tabs/tabs.wxss */
 .swiper-tab {
   width: 100%;
   background-color: #ffffff;
@@ -21,11 +17,6 @@ page {
   border-bottom: 4rpx solid #2A82E4;
 }
 
-.get-height {
-  display: flex;
-  flex-direction: column;
-}
-
 .order-box {
   width: 100%;
   display: flex;
@@ -39,21 +30,11 @@ page {
   background-color: #ffffff;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
-  padding: 2% 0rpx;
 }
 
 .order-date, .order-send {
   font-size: 28rpx;
   color: #808080;
-}
-
-.order-date{
-  margin-left: 3%;
-}
-
-.order-send{
-  margin-right: 2%;
 }
 
 .order-commodities {
@@ -62,7 +43,6 @@ page {
   margin-top: 4rpx;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   padding-top: 2%;
   padding-bottom: 2%;
@@ -72,13 +52,13 @@ page {
   margin-left: 3%;
   width: 80rpx;
   height: 80rpx;
+  float: left;
   border: 2rpx solid #cccccc;
   border-radius: 10rpx;
 }
 
 .cmd-text {
   margin-left: 2%;
-  width: 70%;
 }
 
 .cmd-name {
@@ -89,49 +69,4 @@ page {
 .cmd-property {
   font-size: 24rpx;
   color: #808080;
-}
-
-.cmd-buy {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  margin-right: 2%;
-}
-
-.cmd-number {
-  color: #808080;
-  font-size: 28rpx;
-}
-
-.price-box {
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  align-items: center;
-  margin-top: 4rpx;
-}
-
-.no-pay {
-  width: 100%;
-  background-color: #ffffff;
-  display: flex;
-  justify-content: flex-end;
-}
-
-.pay-button {
-  background-color: #FF6C26;
-  color: #ffffff;
-  padding: 1% 4%;
-  margin-right: 3%;
-}
-
-.after-sale, .to-evaluate {
-  border: 2rpx solid;
-  border-radius: 10rpx;
-  border-color: #cccccc;
-  margin-right: 3%;
-  padding-left: 2%;
-  padding-right: 2%;
 }

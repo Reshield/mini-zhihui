@@ -1,67 +1,146 @@
 // pages/order/order.js
+import { formatTime } from '../../utils/util'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tabs: [],
-    activeTab: 0,
-  },
-  setTabs() {
-    const tabs = [
-      {
-        title: '技术开发',
-        title2: '小程序开发进阶',
-        img: 'http://mmbiz.qpic.cn/sz_mmbiz_jpg/GEWVeJPFkSEV5QjxLDJaL6ibHLSZ02TIcve0ocPXrdTVqGGbqAmh5Mw9V7504dlEiatSvnyibibHCrVQO2GEYsJicPA/0?wx_fmt=jpeg',
-        desc: '本视频系列课程，由腾讯课堂NEXT学院与微信团队联合出品，通过实战案例，深入浅出地进行讲解。',
-      },
-      {
-        title: '产品解析',
-        title2: '微信小程序直播',
-        img: 'http://mmbiz.qpic.cn/sz_mmbiz_png/GEWVeJPFkSHALb0g5rCc4Jf5IqDfdwhWJ43I1IvriaV5uFr9fLAuv3uxHR7DQstbIxhNXFoQEcxGzWwzQUDBd6Q/0?wx_fmt=png',
-        desc: '微信小程序直播系列课程持续更新中，帮助大家更好地理解、应用微信小程序直播功能。',
-      },
-      {
-        title: '运营规范',
-        title2: '常见问题和解决方案',
-        img: 'http://mmbiz.qpic.cn/sz_mmbiz_jpg/GEWVeJPFkSGqys4ibO2a8L9nnIgH0ibjNXfbicNbZQQYfxxUpmicQglAEYQ2btVXjOhY9gRtSTCxKvAlKFek7sRUFA/0?wx_fmt=jpeg',
-        desc: '提高审核质量',
-      },
-      {
-        title: '营销经验',
-        title2: '流量主小程序',
-        img: 'http://mmbiz.qpic.cn/sz_mmbiz_jpg/GEWVeJPFkSH2Eic4Lt0HkZeEN08pWXTticVRgyNGgBVHMJwMtRhmB0hE4m4alSuwsBk3uBBOhdCr91bZlSFbYhFg/0?wx_fmt=jpeg',
-        desc: '本课程共四节，将分阶段为开发者展示如何开通流量主功能、如何接入广告组件、不同类型小程序接入的建议，以及如何通过工具调优小程序变现效率。',
-      },
-      {
-        title: '高校大赛',
-        title2:'2020中国高校计算机大赛',
-        img: 'http://mmbiz.qpic.cn/mmbiz_jpg/TcDuyasB5T3Eg34AYwjMw7xbEK2n01ekiaicPiaMInEMTkOQtuv1yke5KziaYF4MLia4IAbxlm0m5NxkibicFg4IZ92EA/0?wx_fmt=jpeg',
-        desc: '微信小程序应用开发赛',
-      },
+    swiperHeight: null,
+    tabItems: [
+      {id: 0, title: "全部"},
+      {id: 1, title: "待付款"},
+      {id: 2, title: "待收货"},
+      {id: 3, title: "待评价"}
+    ],
+    currentId: 0,
+    noPay: [],
+    noReceive: [],
+    noEvaluate: [],
+    allItems: [],
+    swiperItem: [
+      {id: 0, date: '', send: '已出库', pay: 1, receive: 0, evaluate: 0, commodities: [
+        {id: 0, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/007.jpg?sign=0ddb1eb22315b7913e12fb00cf26e1e0&t=1595926017', name: '扫地机器人', property: '白色', number: 1, price: 10},
+        {id: 1, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '感应夜灯', property: '白色', number: 1, price: 20},
+        {id: 2, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '插线板', property: '黑色', number: 3, price: 33},
+      ]},
+      {id: 0, date: '', send: '未出库', pay: 0, receive: 0, evaluate: 0, commodities: [
+        {id: 0, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '电水壶', property: '白色', number: 1, price: 45},
+        {id: 1, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '筋膜枪', property: '白色', number: 1, price: 78},
+      ]},
+      {id: 0, date: '', send: '未出库', pay: 0, receive: 1, evaluate: 1, commodities: [
+        {id: 0, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '扫地机器人', property: '白色', number: 1, price: 74},
+        {id: 1, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '感应夜灯', property: '白色', number: 1, price: 221},
+        {id: 2, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '插线板', property: '黑色', number: 1, price: 12},
+      ]},
+      {id: 0, date: '', send: '未出库', pay: 0, receive: 1, evaluate: 1, commodities: [
+        {id: 0, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '扫地机器人', property: '白色', number: 1, price: 74},
+        {id: 1, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '感应夜灯', property: '白色', number: 1, price: 221},
+        {id: 2, image: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/006.jpg?sign=5643b1b1f352587d390be127ac9cdf6f&t=1595926033', name: '插线板', property: '黑色', number: 1, price: 12},
+      ]},
     ]
-    this.setData({ tabs })
+  },
+  // 切换 tabs 
+  clickTab: function(e) {
+    let that = this
+    if(this.data.currentId === e.currentTarget.id) {
+      return false;
+    }
+    else {
+      that.setData({
+        currentId: e.currentTarget.id
+      })
+    }
+  },
+  // 获取订单高度
+  swiperHigh() {
+    let tabHeight = 0
+    function getTabsHeight() {
+      return new Promise((resolve, reject) => {
+        const query = wx.createSelectorQuery()
+        query.select('.swiper-tab').boundingClientRect(res => {
+          tabHeight = res.height
+          resolve(tabHeight)
+        }).exec()
+      })
+    }
+    function getWindowHeight() {
+      return new Promise((resolve, reject) => {
+        wx.getSystemInfo({
+          success: (result) => {
+            resolve(result.windowHeight)
+          },
+        })
+      })
+    }
+    getTabsHeight().then(res => {
+      tabHeight = res
+      return getWindowHeight()
+    }).then(res => {
+      let swiperHeight = 0
+      swiperHeight = res  - tabHeight
+      let that = this
+      that.setData({
+        swiperHeight
+      })
+    })
+  },
+  // 设置待付款
+  setArrays() {
+    let noPay = []
+    let noReceive = []
+    let noEvaluate = []
+    this.data.swiperItem.forEach(item => {
+      let totalPrice = 0
+      let sum = 0
+      item.date = formatTime()
+      item.commodities.forEach(cmd => {
+        totalPrice += cmd.price * cmd.number
+        sum += cmd.number
+      })
+      item.totalPrice = totalPrice
+      item.sum = sum
+      if(item.pay == 0) {
+        noPay.push(item)
+      }
+      if(item.receive == 0) {
+        noReceive.push(item)
+      }
+      if(item.evaluate == 0) {
+        noEvaluate.push(item)
+      }
+    })
+    let allItems = []
+    allItems.push(this.data.swiperItem)
+    allItems.push(noPay)
+    allItems.push(noReceive)
+    allItems.push(noEvaluate)
+    let that = this
+    that.setData({
+      allItems
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setTabs()
+    this.setArrays()
+    this.swiperHigh()
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

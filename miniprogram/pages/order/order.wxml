@@ -1,10 +1,50 @@
 <!--pages/order/order.wxml-->
-<mp-tabs 
-  tabs="{{tabs}}" 
-  activeTab="{{activeTab}}" 
-  swiperClass="weui-tabs-swiper"
-  bindtabclick="onTabClick"
-  bindchange="onChange"
-  activeClass="tab-bar-title__selected"
->
-</mp-tabs>
+<!-- <my-tabs windowHeight="{{windowHeight}}"></my-tabs> -->
+<view class="swiper-tab" id="swiperTab">
+  <block wx:for="{{tabItems}}" wx:key="title">
+    <view class="tab-item {{currentId == item.id ? 'active': ''}}" bindtap="clickTab" id="{{item.id}}">{{item.title}}</view>
+  </block>
+</view>
+
+<swiper current="{{currentId}}" style="height: {{ swiperHeight }}px">
+  <block wx:for="{{allItems}}" wx:key="index">
+    <swiper-item>
+      <scroll-view scroll-y="true" style="height: {{ swiperHeight }}px" scroll-top="none">
+        <block wx:for="{{item}}" wx:key="id">
+          <view class="order-box" >
+            <view class="order-statu">
+              <view class="order-date">{{item.date}}</view>
+              <view class="order-send">{{item.send}}</view>
+            </view>
+            <block wx:for="{{item.commodities}}" wx:key="id">
+              <view class="order-commodities">
+                <image src="{{item.image}}" class="cmd-image"></image>
+                <view class="cmd-text">
+                  <view class="cmd-name">{{item.name}}</view>
+                  <view class="cmd-property">{{item.property}}</view>
+                </view>
+                <view class="cmd-buy">
+                  <view class="cmd-price">￥ {{item.price}}</view>
+                  <view class="cmd-number">x {{item.number}}</view>
+                </view>
+              </view>
+            </block>
+            <view class="price-box">
+              <text style="font-size: 28rpx">共{{item.sum}}件商品 实付金额：</text><text style="font-size:42rpx; margin-right:3%">￥{{item.totalPrice}}</text>
+            </view>
+            <view class="no-pay" wx:if="{{item.pay === 0}}">
+              <view class="pay-button">去支付</view>
+            </view>
+            <view class="no-pay" wx:if="{{item.pay != 0}}">
+              <view class="after-sale">申请售后</view>
+              <view class="to-evaluate">评价晒单</view>
+            </view>
+          </view>
+        </block>
+      </scroll-view>
+    </swiper-item>
+  </block>
+</swiper>
+
+
+

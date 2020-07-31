@@ -1,0 +1,18 @@
+<!--components/search/search.wxml-->
+<view class="search-view">
+  <view class="search-content">
+    <mp-icon icon="search" color="black" size="{{28}}"></mp-icon>
+    <input placeholder="请输入搜索内容" class="search-input" maxlength="30" confirm-type="搜索" bindinput='listenerSearchInput'>
+    </input>
+    <view class='search-btn' bindtap="toSearch">搜索</view>
+  </view>
+</view>
+<view class="search-list">
+  <!-- 联想列表 -->
+  <block wx:for="{{searchBox}}" wx:key="id">
+  <view class="search-box">{{item.title}}</view>
+  </block>
+  <view class="close-search" bindtap="closeSearch">
+    关闭
+  </view>
+</view>

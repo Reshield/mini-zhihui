@@ -1,0 +1,33 @@
+/* pages/detail/detail.wxss */
+page {
+  background-color: #F5F5F5;
+}
+
+.swiper-img {
+  width: 100%;
+}
+
+.intro-box {
+  background-color: #ffffff;
+}
+
+.intro-name {
+  margin-left: 3%;
+  font-size: 32rpx;
+}
+
+.intro-price {
+  margin-left: 3%;
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #FF703A;
+}
+
+.cell-box {
+  margin-top: 3%;
+}
+
+.comment-box {
+  width: 100%;
+  background-color: #ffffff;
+}
