@@ -1,6 +1,6 @@
 /* pages/shoppingCart/shoppingCart.wxss */
 page {
-  background-color: #D9E8FF;
+  background-color: #F8F8F8;
 }
 
 .commodity-list {
@@ -19,12 +19,13 @@ page {
 }
 
 .commodity-cart {
+  margin-top: 10rpx;
   width: 400rpx;
   margin-left: 28rpx;
   margin-right: 28rpx;
   background-color: #ffffff;
   border-radius: 10rpx;
-  box-shadow: 0rpx 0rpx 20rpx rgba(0, 0, 0, 0.6);
+  border-bottom: 2rpx solid #7C7C7C;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,7 +42,7 @@ page {
 
 .split-line {
   height: 2rpx;
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: #D8DDE5;
   width: 100%;
   margin-top: 10rpx;
   margin-bottom: 10rpx;
@@ -86,12 +87,15 @@ page {
 }
 
 .price-box {
-  display: block;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   width: 90%;
   background-color: #ffffff;
   margin-left: 5%;
-  box-shadow: 0rpx 0rpx 10rpx rgba(0, 0, 0, 0.6);
   margin-top: 5%;
+  border-bottom: 2rpx solid #7C7C7C;
+  border-radius: 10rpx;
 }
 
 .price-total , .price-coupon{

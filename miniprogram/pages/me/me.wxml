@@ -1,21 +1,25 @@
 <!--pages/me/me.wxml-->
 <view class="me-header">
   <view class="me-user">
-    <image src="{{avatar}}" class="avatar"></image>
+    <image src="{{userInfo.avatarUrl}}" class="avatar"></image>
     <view class="user-text">
-      <view class="user-name">{{username}}</view>
+      <view class="user-name">{{userInfo.nickName}}</view>
       <view class="user-description">{{description}}</view>
     </view>
   </view>
   <view class="iform-box" bindtap="toEmails">
-    <mp-badge content="{{eNumber}}"/>
-    <mp-icon icon="email" type="field" color="black" size="{{25}}" color="#ffffff" class="email"></mp-icon>
+    <navigator url="../emails/emails">
+      <mp-badge content="{{eNumber}}"/>
+      <mp-icon icon="email" type="field" color="black" size="{{25}}" color="#ffffff" class="email"></mp-icon>
+    </navigator>
   </view>
 </view>
 
-<mp-cells>
-  <mp-cell link hover value="我的订单" footer="全部订单" bindtap="toOrder" ></mp-cell>
-</mp-cells>
+<navigator url="../order/order">
+  <mp-cells>
+    <mp-cell link hover value="我的订单" footer="全部订单"></mp-cell>
+  </mp-cells>
+</navigator>
 
 <view class="order-box">
   <view class="icon-box">
@@ -35,3 +39,6 @@
     退换修
   </view>
 </view>
+
+<!-- 授权按钮 -->
+<button  wx:if="{{!userInfo.openid}}" type="default" open-type="getUserInfo" bindgetuserinfo="getUserInfo">登录</button>

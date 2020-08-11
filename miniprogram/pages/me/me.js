@@ -1,30 +1,64 @@
 // pages/me/me.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    username: '王二狗',
-    description: '这条狗很懒，什么都没留下',
-    avatar: "https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/avatar.jpg?sign=6442385f0fcaf8c654d52b8d2f2ca084&t=1595492627",
-    eNumber: 2
+    userInfo: {},
+    defaultAvatar: 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/userAvatars/default-avatar.png?sign=6863575088391588f26e56ea19f9290e&t=1597135374',
+    logged: false
   },
-  toOrder() {
-    wx.navigateTo({
-      url: '../order/order',
-    })
+  // 登录状态
+  checkLogin() {
+    let that = this
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo == '' || userInfo == undefined) {
+      let user = {}
+      user.avatarUrl = 'https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/userAvatars/default-avatar.png?sign=6863575088391588f26e56ea19f9290e&t=1597135374'
+      user.nickName = '请先登录'
+      that.setData({
+        userInfo: user
+      })
+    }
+    else {
+      that.setData({
+        userInfo,
+        logged: true
+      })
+    }
   },
-  toEmails() {
-    wx.navigateTo({
-      url: '../emails/emails',
+  // 获取用户数据
+  getUserInfo(e) {
+    let that = this
+    wx.cloud.callFunction({
+      name: 'login',
+      data: {},
+      success: res => {
+        console.log('[云函数] [login] user openid: ', res.result.openid)
+        app.globalData.openid = res.result.openid
+        e.detail.userInfo.openid = res.result.openid
+        wx.setStorageSync('userInfo', e.detail.userInfo)
+        that.setData({
+          userInfo: e.detail.userInfo
+        })
+        console.log(this.data.userInfo)
+      },
+      fail: err => {
+        console.error('[云函数] [login] 调用失败', err)
+        wx.navigateTo({
+          url: '../deployFunctions/deployFunctions',
+        })
+      }
     })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.checkLogin()
   },
 
   /**

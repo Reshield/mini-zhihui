@@ -1,13 +1,14 @@
 {
   "pages": [
+    "pages/me/me",
+    "pages/shoppingCart/shoppingCart",
     "pages/home/home",
     "pages/order/order",
-    "pages/me/me",
     "pages/detail/detail",
-    "pages/shoppingCart/shoppingCart",
     "pages/emails/emails",
-    "pages/index/index",
     "pages/newView/newView",
+    "pages/login/login",
+    "pages/index/index",
     "pages/userConsole/userConsole",
     "pages/storageConsole/storageConsole",
     "pages/databaseGuide/databaseGuide",

@@ -13,7 +13,9 @@ App({
         traceUser: true,
       })
     }
-    this.globalData = {}
+    this.globalData = {
+      openid: ''
+    }
   },
   // ---------- 常用函数 ----------
   // ---------- 数据库操作 ----------

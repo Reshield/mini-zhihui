@@ -1,4 +1,6 @@
 // pages/shoppingCart/shoppingCart.js
+const app = getApp()
+
 Page({
 
   /**
@@ -38,7 +40,10 @@ Page({
     total: null,
     coupon: 0,
     finally: null,
-    selectAll: true
+    selectAll: true,
+    scrollHeight: 100,
+    cartHeight: 200,
+    priceHeight: 100
   },
   // 监听横向滚动条滑动
   scroll(e) {
@@ -91,11 +96,35 @@ Page({
     })
     console.log(this.data.selectAll)
   },
+  // 设置高度
+  setHeight() {
+    let that = this
+    wx.getSystemInfo({
+      success (res) {
+       let scrollHeight = res.windowHeight * 0.5
+       let cartHeight = scrollHeight - 10
+       let priceHeight = res.windowHeight * 0.3
+       that.setData({
+         scrollHeight,
+         cartHeight,
+         priceHeight
+       })
+      },
+      fail(err) {
+        console.log(err)
+      } 
+    })
+  },
+  // 获取购物车信息
+  getCarInfo() {
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.totalPrice()
+    this.setHeight()
   },
 
   /**

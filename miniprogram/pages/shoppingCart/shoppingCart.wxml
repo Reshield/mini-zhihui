@@ -2,9 +2,9 @@
 <!-- 还未获取购物车列表子元素的序列号 -->
 
 <view class="commodity-list">
-  <scroll-view scroll-x class="scroll-view_H" bindscroll="scroll" style="width:100%">
+  <scroll-view scroll-x class="scroll-view_H" bindscroll="scroll" style="width:100%; height:{{scrollHeight}}px">
     <view class="scroll-view" wx:for="{{commodities}}" wx:key="id" wx:for-index="index">
-      <view class="commodity-cart" id='{{item.id}}' data-name='{{item.name}}'>
+      <view class="commodity-cart" id='{{item.id}}' data-name='{{item.name}}' style="height: {{cartHeight}}px">
         <icon class="delete-cart" type="cancel" size="24"></icon>
         <image 
           mode="widthFix"
@@ -28,7 +28,7 @@
   </scroll-view>
 </view>
 
-<view class="price-box">
+<view class="price-box" style="height: {{priceHeight}}px">
   <view class="price-total">
     <view class="total">合计</view>
     <view class="total-number">￥{{total}}</view>
