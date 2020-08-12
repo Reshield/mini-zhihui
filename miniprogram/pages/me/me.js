@@ -37,7 +37,6 @@ Page({
       name: 'login',
       data: {},
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
         e.detail.userInfo.openid = res.result.openid
         wx.setStorageSync('userInfo', e.detail.userInfo)

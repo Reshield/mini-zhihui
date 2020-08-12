@@ -17,7 +17,45 @@ Page({
     ],
     currentId: 0,
     swiperHeight: 0,
-    tabbarTop: 0
+    tabbarTop: 0,
+    carNumber: 0,
+    openid: ''
+  },
+  // 添加至购物车
+  addCar() {
+    let mycar = {}
+    let mycommodity= this.data.commodity
+    mycar.commodityId = mycommodity.commodityId
+    mycar.fittings = mycommodity.fittings
+    mycar._id = mycommodity._id
+    mycar.name = mycommodity.name
+    mycar.price = mycommodity.price
+    mycar.image = mycommodity.images['0']
+    mycar._openid = this.data.openid
+    mycar.number = 1
+    mycar._openid = this.data.openid
+    console.log(mycar)
+    // 无法传入 openid，貌似需要用到云函数
+    app.addRowToSet('shoppingCar', mycar, 
+      res => {
+        console.log(res)
+      },
+      err => {
+        console.log(err)
+      }
+    )
+  },
+  // 切换 tabs 
+  clickTab: function(e) {
+    let that = this
+    if(this.data.currentId === e.currentTarget.id) {
+      return false;
+    }
+    else {
+      that.setData({
+        currentId: e.currentTarget.id
+      })
+    }
   },
   // 获取商品信息
   getCommodity(id) {
@@ -44,6 +82,31 @@ Page({
       )
     })
   },
+  // 设置高度
+  setHeight() {
+    // function getBoxHeight() {
+    //   return new Promise((resolve, reject) => {
+    //     const query = wx.createSelectorQuery()
+    //     query.select('#abc').boundingClientRect(res => {
+    //       console.log(res)
+    //       resolve(res)
+    //     }).exec()
+    //   })
+    // }
+    // getBoxHeight()
+    // .then(res => {
+    //   console.log('555 ' + res)
+    // })
+    wx.getSystemInfo({
+      success:(res) => {
+        let tabbarTop = res.windowHeight - 50
+        this.setData({
+          tabbarTop
+        })
+      },
+      complete: (res) => {},
+    })
+  },
   // 获取评价用户信息
   getUser(e) {
     let that = this
@@ -63,49 +126,31 @@ Page({
       )
     })
   },
-  // 切换 tabs 
-  clickTab: function(e) {
+  // 获取购物车数量
+  getCarNumber() {
     let that = this
-    if(this.data.currentId === e.currentTarget.id) {
-      return false;
-    }
-    else {
-      that.setData({
-        currentId: e.currentTarget.id
-      })
-    }
-  },
-  // 设置高度
-  setHeight() {
-    // function getBoxHeight() {
-    //   return new Promise((resolve, reject) => {
-    //     const query = wx.createSelectorQuery()
-    //     query.select('#abc').boundingClientRect(res => {
-    //       console.log(res)
-    //       resolve(res)
-    //     }).exec()
-    //   })
-    // }
-    // getBoxHeight()
-    // .then(res => {
-    //   console.log('555 ' + res)
-    // })
-    wx.getSystemInfo({
-      success:(res) => {
-        console.log(res.windowHeight)
-        let tabbarTop = res.windowHeight - 50
-        this.setData({
-          tabbarTop
+    let _openid = this.data.openid
+    app.getInfoWhere('shoppingCar', {_openid},
+      res => {
+        let carNumber = res.data.length
+        that.setData({
+          carNumber
         })
-      },
-      complete: (res) => {},
-    })
+      }
+    )
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     let that = this
+    // 获取 openid
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo != '' && userInfo != undefined) {
+      that.setData({
+        openid: userInfo.openid
+      })
+    }
     // 设置商品详情
     this.getCommodity(options.id)
     .then(res => {
@@ -124,6 +169,7 @@ Page({
       return this.getUser(res)
     })
     this.setHeight()
+    this.getCarNumber()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成

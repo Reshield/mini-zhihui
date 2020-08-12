@@ -38,6 +38,15 @@ App({
         fail: console.error
       })
   },
+  // 往集合增加数据
+  addRowToSet: function(setName,infoObject,callback){
+    const db = wx.cloud.database()
+    db.collection(setName).add({
+      data: infoObject,
+      success:callback,
+      fail: console.error
+    })
+  },
   // 根据条件删除数据
   deleteInfoWhere: function(setName, ruleObj, callback) {
     const db = wx.cloud.database()

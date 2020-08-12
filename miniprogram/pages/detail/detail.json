@@ -2,7 +2,8 @@
   "usingComponents": {
     "mp-cell": "weui-miniprogram/cell/cell",
     "mp-cells": "weui-miniprogram/cells/cells",
-    "mp-icon": "weui-miniprogram/icon/icon"
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-badge": "weui-miniprogram/badge/badge"
   },
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "商品详情"

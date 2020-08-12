@@ -89,6 +89,13 @@ page {
   box-shadow: 0rpx -2rpx 14rpx #CACACA;
 }
 
+.icon-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 40%;
+}
+
 .kefu-box {
   display: flex;
   flex-direction: column;
@@ -97,8 +104,21 @@ page {
 }
 
 .kefu-image {
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
+}
+
+.car-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.badge {
+  position: absolute;
+  left: 30%;
+  top: 2%;
 }
 
 .buy-box {
@@ -114,7 +134,7 @@ page {
   color: #ffffff;
   font-size: 28rpx;
   height: 50px;
-  width: 150rpx;
+  width: 180rpx;
 }
 
 .to-buy {
@@ -125,6 +145,6 @@ page {
   color: #ffffff;
   font-size: 28rpx;
   height: 50px;
-  width: 150rpx;
+  width: 180rpx;
 }
 

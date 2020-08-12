@@ -66,7 +66,6 @@ Page({
     this.setData({
       selectAll: ! this.data.selectAll
     })
-    console.log(this.data.selectAll)
   },
   // 设置高度
   setHeight() {
@@ -95,7 +94,6 @@ Page({
       let _openid = userInfo.openid
       app.getInfoWhere('shoppingCar', {_openid}, 
         res => {
-          console.log(res)
           that.setData({
             showCar: true,
             commodities: res.data

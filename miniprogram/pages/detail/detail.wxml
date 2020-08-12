@@ -53,16 +53,19 @@
 
 <!-- 购买操作栏 -->
 <view class="tabbar-box" style="top: {{tabbarTop}}px">
-  <view class="kefu-box">
-    <image class="kefu-image" mode="heightFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/kefu.png?sign=c7a599fb314bae69567fac5d4c61c286&t=1597211583"></image>
-    客服
+  <view class="icon-box">
+    <view class="kefu-box">
+      <image class="kefu-image" mode="heightFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/kefu.png?sign=c7a599fb314bae69567fac5d4c61c286&t=1597211583"></image>
+      客服
+    </view>
+    <view class="car-box">
+      <mp-icon icon="shop" type="field" color="#F46A79" size="{{30}}"></mp-icon>
+      <mp-badge content="{{carNumber}}" class="badge"/>
+      购物车
+    </view>
   </view>
-  <view class="favor-box">
-    
-  </view>
-    
   <view class="buy-box">
-    <view class="add-car">
+    <view class="add-car" bind:tap="addCar">
       加入购物车
     </view>
     <view class="to-buy">
