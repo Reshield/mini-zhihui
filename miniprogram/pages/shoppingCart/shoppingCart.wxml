@@ -1,10 +1,8 @@
 <!--pages/shoppingCart/shoppingCart.wxml-->
-<!-- 还未获取购物车列表子元素的序列号 -->
-
-<view class="commodity-list">
+<view class="commodity-list" wx:if="{{showCar}}">
   <scroll-view scroll-x class="scroll-view_H" bindscroll="scroll" style="width:100%; height:{{scrollHeight}}px">
-    <view class="scroll-view" wx:for="{{commodities}}" wx:key="id" wx:for-index="index">
-      <view class="commodity-cart" id='{{item.id}}' data-name='{{item.name}}' style="height: {{cartHeight}}px">
+    <view class="scroll-view" wx:for="{{commodities}}" wx:key="_id" wx:for-index="index">
+      <view class="commodity-cart" id='{{item._id}}' data-name='{{item.name}}' style="height: {{cartHeight}}px">
         <icon class="delete-cart" type="cancel" size="24"></icon>
         <image 
           mode="widthFix"
@@ -50,3 +48,7 @@
   </view>
   <view class="footer-button">去支付</view>
 </view>
+
+<view class="empty-box">
+</view>
+  

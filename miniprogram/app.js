@@ -37,5 +37,13 @@ App({
         success: callback,
         fail: console.error
       })
+  },
+  // 根据条件删除数据
+  deleteInfoWhere: function(setName, ruleObj, callback) {
+    const db = wx.cloud.database()
+    db.collection(setName).where(ruleObj)
+      .remove()
+      .then(callback)
+      .catch(console.error)
   }
 })

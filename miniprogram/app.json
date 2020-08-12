@@ -1,10 +1,10 @@
 {
   "pages": [
-    "pages/me/me",
-    "pages/shoppingCart/shoppingCart",
     "pages/home/home",
-    "pages/order/order",
     "pages/detail/detail",
+    "pages/shoppingCart/shoppingCart",
+    "pages/me/me",
+    "pages/order/order",
     "pages/emails/emails",
     "pages/newView/newView",
     "pages/login/login",

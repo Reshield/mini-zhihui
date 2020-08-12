@@ -44,7 +44,6 @@ Page({
         that.setData({
           userInfo: e.detail.userInfo
         })
-        console.log(this.data.userInfo)
       },
       fail: err => {
         console.error('[云函数] [login] 调用失败', err)

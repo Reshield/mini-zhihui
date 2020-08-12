@@ -7,43 +7,15 @@ Page({
    * 页面的初始数据
    */
   data: {
-    commodities: [
-      {
-        id:1,
-        name: "UNPO筋膜枪",
-        image: "https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/001.jpg?sign=6e9c3fdfa1f6476c36dc53f831456138&t=1595321961",
-        price: 429,
-        number: 1
-      },
-      {
-        id:2,
-        name: "UNPO筋膜枪2",
-        image: "https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/002.jpg?sign=d8c7c425efa7506de0b32efef499ab2b&t=1595323450",
-        price: 429,
-        number: 1
-      },
-      {
-        id:3,
-        name: "UNPO筋膜枪3",
-        image: "https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/003.jpg?sign=3714acf877cfa273b0722543e3ab020a&t=1595323464",
-        price: 429,
-        number: 1
-      },
-      {
-        id:4,
-        name: "UNPO筋膜枪4",
-        image: "https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/commoditisImages/004.jpg?sign=45d3ff7e4cddef2ca4c128c78cc364dc&t=1595323475",
-        price: 429,
-        number: 1
-      },
-    ],
+    commodities: [],
     total: null,
     coupon: 0,
     finally: null,
     selectAll: true,
     scrollHeight: 100,
     cartHeight: 200,
-    priceHeight: 100
+    priceHeight: 100,
+    showCar: false
   },
   // 监听横向滚动条滑动
   scroll(e) {
@@ -117,12 +89,26 @@ Page({
   },
   // 获取购物车信息
   getCarInfo() {
-    
+    let that = this
+    let userInfo = wx.getStorageSync('userInfo')
+    if(userInfo != '' || userInfo != undefined) {
+      let _openid = userInfo.openid
+      app.getInfoWhere('shoppingCar', {_openid}, 
+        res => {
+          console.log(res)
+          that.setData({
+            showCar: true,
+            commodities: res.data
+          })
+        }
+      )
+    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.getCarInfo()
     this.totalPrice()
     this.setHeight()
   },

@@ -16,7 +16,8 @@ Page({
       {id: 1, title: "参数"}
     ],
     currentId: 0,
-    swiperHeight: 0
+    swiperHeight: 0,
+    tabbarTop: 0
   },
   // 获取商品信息
   getCommodity(id) {
@@ -74,20 +75,30 @@ Page({
       })
     }
   },
-  // 设置 swiper 高度
-  setSwiperHeight() {
-    function getBoxHeight() {
-      return new Promise((resolve, reject) => {
-        const query = wx.createSelectorQuery()
-        query.select('#abc').boundingClientRect(res => {
-          console.log(res)
-          resolve(res)
-        }).exec()
-      })
-    }
-    getBoxHeight()
-    .then(res => {
-      console.log('555 ' + res)
+  // 设置高度
+  setHeight() {
+    // function getBoxHeight() {
+    //   return new Promise((resolve, reject) => {
+    //     const query = wx.createSelectorQuery()
+    //     query.select('#abc').boundingClientRect(res => {
+    //       console.log(res)
+    //       resolve(res)
+    //     }).exec()
+    //   })
+    // }
+    // getBoxHeight()
+    // .then(res => {
+    //   console.log('555 ' + res)
+    // })
+    wx.getSystemInfo({
+      success:(res) => {
+        console.log(res.windowHeight)
+        let tabbarTop = res.windowHeight - 50
+        this.setData({
+          tabbarTop
+        })
+      },
+      complete: (res) => {},
     })
   },
   /**
@@ -95,6 +106,7 @@ Page({
    */
   onLoad: function (options) {
     let that = this
+    // 设置商品详情
     this.getCommodity(options.id)
     .then(res => {
       that.setData({
@@ -111,7 +123,7 @@ Page({
       })
       return this.getUser(res)
     })
-    this.setSwiperHeight()
+    this.setHeight()
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
