@@ -1,0 +1,20 @@
+<!--components/dialog/dialog.wxml-->
+<view class="salary-modal">
+  <view class="salary-back {{isShow? 'active' : ''}}"></view>
+  <view class="salary-content {{isShow ? 'active' : ''}}">
+    <view class="flex-box">
+        <view class="salary-modal-title">
+            <image class="salary-image" src="{{commodity.images['0']}}" mode="widthFix"/>
+            <view class="price-box">
+                <text class="price-text">￥{{commodity.price}}</text>
+                <text class="price-name">{{commodity.name}}</text>
+            </view>
+            
+            <mp-icon icon="close" color="black" size="{{25}}" bindtap="handleClose" class="salary-close"></mp-icon>
+        </view>
+        <view class="type-box">
+            <text class="type-title">款式</text>
+        </view>
+    </view>
+  </view>
+</view>

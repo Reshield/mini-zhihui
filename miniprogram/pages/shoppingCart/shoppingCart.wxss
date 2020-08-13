@@ -133,8 +133,12 @@ page {
 .footer-button {
   display: block;
   height: 100%;
+  width: 180rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
   background-color: #FF6539;
   color: #ffffff;
   font-size: 30rpx;
-  padding: 20rpx;
 }

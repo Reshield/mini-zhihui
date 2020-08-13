@@ -19,31 +19,61 @@ Page({
     swiperHeight: 0,
     tabbarTop: 0,
     carNumber: 0,
-    openid: ''
+    openid: '',
+    isShow: false
+  },
+  // 切换弹出窗显示
+  handleClick() {
+    this.setData({
+      isShow: !this.data.isShow
+    })
   },
   // 添加至购物车
   addCar() {
-    let mycar = {}
-    let mycommodity= this.data.commodity
-    mycar.commodityId = mycommodity.commodityId
-    mycar.fittings = mycommodity.fittings
-    mycar._id = mycommodity._id
-    mycar.name = mycommodity.name
-    mycar.price = mycommodity.price
-    mycar.image = mycommodity.images['0']
-    mycar._openid = this.data.openid
-    mycar.number = 1
-    mycar._openid = this.data.openid
-    console.log(mycar)
-    // 无法传入 openid，貌似需要用到云函数
-    app.addRowToSet('shoppingCar', mycar, 
-      res => {
-        console.log(res)
-      },
-      err => {
-        console.log(err)
-      }
-    )
+    this.setData({
+      isShow: !this.data.isShow
+    })
+    console.log(this.data.isShow)
+    // let that = this
+    // let mycommodity= this.data.commodity
+    // let _openid = this.data.openid
+    // console.log(mycommodity._id)
+    // app.getInfoWhere('shoppingCar', {_id: mycommodity._id, _openid}, 
+    //    res => {
+    //      console.log(res)
+    //      if(res.data.length != 0) {
+    //       wx.showToast({
+    //         title: '已经添加过了~',
+    //       })
+    //      }
+    //      else {
+    //       let mycar = {}
+    //       let mycommodity= this.data.commodity
+    //       mycar.fittings = mycommodity.fittings
+    //       mycar._id = mycommodity._id
+    //       mycar.name = mycommodity.name
+    //       mycar.price = mycommodity.price
+    //       mycar.image = mycommodity.images['0']
+    //       mycar.number = 1
+    //       app.addRowToSet('shoppingCar', mycar, 
+    //         res => {
+    //           if(res) {
+    //             wx.showToast({
+    //               title: '添加成功~',
+    //             })
+    //             that.setData({
+    //               carNumber: carNumber + 1
+    //             })
+    //           }
+    //           return
+    //         },
+    //         err => {
+    //           console.log(err)
+    //         }
+    //       )
+    //      }
+    //    }
+    // )
   },
   // 切换 tabs 
   clickTab: function(e) {
@@ -84,19 +114,6 @@ Page({
   },
   // 设置高度
   setHeight() {
-    // function getBoxHeight() {
-    //   return new Promise((resolve, reject) => {
-    //     const query = wx.createSelectorQuery()
-    //     query.select('#abc').boundingClientRect(res => {
-    //       console.log(res)
-    //       resolve(res)
-    //     }).exec()
-    //   })
-    // }
-    // getBoxHeight()
-    // .then(res => {
-    //   console.log('555 ' + res)
-    // })
     wx.getSystemInfo({
       success:(res) => {
         let tabbarTop = res.windowHeight - 50

@@ -58,11 +58,13 @@
       <image class="kefu-image" mode="heightFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/kefu.png?sign=c7a599fb314bae69567fac5d4c61c286&t=1597211583"></image>
       客服
     </view>
-    <view class="car-box">
-      <mp-icon icon="shop" type="field" color="#F46A79" size="{{30}}"></mp-icon>
-      <mp-badge content="{{carNumber}}" class="badge"/>
-      购物车
-    </view>
+    <navigator url="../shoppingCart/shoppingCart" open-type="switchTab">
+      <view class="car-box">
+        <mp-icon icon="shop" type="field" color="#F46A79" size="{{30}}"></mp-icon>
+        <mp-badge content="{{carNumber}}" class="badge"/>
+        购物车
+      </view>
+    </navigator>
   </view>
   <view class="buy-box">
     <view class="add-car" bind:tap="addCar">
@@ -73,6 +75,10 @@
     </view>
   </view>  
 </view>
+
+<!-- 上拉弹窗 -->
+<dialog isShow="{{isShow}}" commodity="{{commodity}}" bind:cancle="handleClick"></dialog>
+  
   
 
 

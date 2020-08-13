@@ -26,7 +26,7 @@
   </scroll-view>
 </view>
 
-<view class="price-box" style="height: {{priceHeight}}px">
+<view class="price-box" style="height: {{priceHeight}}px" wx:if="{{showCar}}">
   <view class="price-total">
     <view class="total">合计</view>
     <view class="total-number">￥{{total}}</view>
@@ -41,7 +41,7 @@
   </view>
 </view>
 
-<view class="cart-footer">
+<view class="cart-footer" wx:if="{{showCar}}" style="height: {{footerHeight}}px">
   <view class="footer-radio">
     <mp-icon type="field" icon="done2" color="{{selectAll ? '#FF6539' : '#cccccc'}}" size="{{30}}" bindtap="selectAll"></mp-icon>
     全选
@@ -49,6 +49,7 @@
   <view class="footer-button">去支付</view>
 </view>
 
-<view class="empty-box">
+<view class="empty-box" wx:if="{{!showCar}}">
+  购物车空空如也~
 </view>
   

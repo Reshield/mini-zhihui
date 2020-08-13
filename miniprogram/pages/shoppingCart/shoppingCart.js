@@ -15,7 +15,9 @@ Page({
     scrollHeight: 100,
     cartHeight: 200,
     priceHeight: 100,
-    showCar: false
+    footerHeight: 50,
+    showCar: false,
+    _openid: '',
   },
   // 监听横向滚动条滑动
   scroll(e) {
@@ -75,10 +77,12 @@ Page({
        let scrollHeight = res.windowHeight * 0.5
        let cartHeight = scrollHeight - 10
        let priceHeight = res.windowHeight * 0.3
+       let footerHeight = res.windowHeight * 0.08
        that.setData({
          scrollHeight,
          cartHeight,
-         priceHeight
+         priceHeight,
+         footerHeight
        })
       },
       fail(err) {
@@ -89,26 +93,21 @@ Page({
   // 获取购物车信息
   getCarInfo() {
     let that = this
-    let userInfo = wx.getStorageSync('userInfo')
-    if(userInfo != '' || userInfo != undefined) {
-      let _openid = userInfo.openid
-      app.getInfoWhere('shoppingCar', {_openid}, 
-        res => {
-          that.setData({
-            showCar: true,
-            commodities: res.data
-          })
-        }
+    let _openid = this.data._openid
+    app.getInfoWhere('shoppingCar', {_openid}, 
+      res => {
+        that.setData({
+          showCar: true,
+          commodities: res.data
+        })
+      }
       )
-    }
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCarInfo()
-    this.totalPrice()
-    this.setHeight()
+    
   },
 
   /**
@@ -122,7 +121,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    let that = this
+    let userInfo = wx.getStorageSync('userInfo')
+    let _openid = userInfo.openid
+    if(_openid != '' && _openid != undefined) {
+      this.getCarInfo()
+      this.totalPrice()
+      this.setHeight()
+      that.setData({
+        showCar: true,
+        _openid
+      })
+    }
+    else {
+      return
+    }
   },
 
   /**
