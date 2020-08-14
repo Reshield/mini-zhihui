@@ -15,10 +15,9 @@
             <view class="type-title">款式</view>
             <view class="type-button">
               <block wx:for="{{commodity.types}}" wx:key="index">
-              <!-- 选择颜色 -->
-                <!-- <view class="{{typeItem = index ? ''}}" id="{{index}}" bindtap="chooseType">
+                <view class='{{typeItem==index? "type-item2":"type-item"}}' id="{{index}}" bindtap="chooseType">
                   {{item}}
-                </view> -->
+                </view>
               </block>
             </view>
         </view>

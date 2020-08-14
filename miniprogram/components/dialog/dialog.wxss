@@ -118,7 +118,7 @@
   font-size: 30rpx;
 }
 
-.type-item:active {
+.type-item2 {
   display: block;
   padding: 4rpx 20rpx;
   border: 2rpx solid #FF7373;

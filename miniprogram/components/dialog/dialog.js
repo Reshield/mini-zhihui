@@ -1,4 +1,6 @@
 // components/dialog/dialog.js
+const app = getApp()
+
 Component({
   /**
    * 组件的属性列表
@@ -19,6 +21,7 @@ Component({
    */
   data: {
     number: 1,
+    type: '',
     typeItem: null
   },
 
@@ -46,53 +49,55 @@ Component({
     },
     chooseType(e) {
       let that = this
-      console.log(e)
       let id = e.target.id
+      let type = this.data.commodity.types[id]
       that.setData({
-        typeItem: id
+        typeItem: id,
+        type
       })
     },
     addCart() {
-      // let that = this
-      // let mycommodity= this.data.commodity
-      // let _openid = this.data.openid
-      // console.log(mycommodity._id)
-      // app.getInfoWhere('shoppingCar', {_id: mycommodity._id, _openid}, 
-      //    res => {
-      //      console.log(res)
-      //      if(res.data.length != 0) {
-      //       wx.showToast({
-      //         title: '已经添加过了~',
-      //       })
-      //      }
-      //      else {
-      //       let mycar = {}
-      //       let mycommodity= this.data.commodity
-      //       mycar.fittings = mycommodity.fittings
-      //       mycar._id = mycommodity._id
-      //       mycar.name = mycommodity.name
-      //       mycar.price = mycommodity.price
-      //       mycar.image = mycommodity.images['0']
-      //       mycar.number = 1
-      //       app.addRowToSet('shoppingCar', mycar, 
-      //         res => {
-      //           if(res) {
-      //             wx.showToast({
-      //               title: '添加成功~',
-      //             })
-      //             that.setData({
-      //               carNumber: carNumber + 1
-      //             })
-      //           }
-      //           return
-      //         },
-      //         err => {
-      //           console.log(err)
-      //         }
-      //       )
-      //      }
-      //    }
-      // )
+      let that = this
+      let mycommodity= this.data.commodity
+      let userInfo = wx.getStorageSync('userInfo')
+      let _openid = userInfo.openid
+      app.getInfoWhere('shoppingCar', {_id: mycommodity._id}, 
+         res => {
+           console.log(res)
+           if(res.data.length != 0) {
+            wx.showToast({
+              title: '已经添加过了~',
+            })
+            this.triggerEvent('handleClick')
+           }
+           else {
+            let mycar = {}
+            let mycommodity= this.data.commodity
+            mycar.fittings = mycommodity.fittings
+            mycar._id = mycommodity._id
+            mycar.name = mycommodity.name
+            mycar.price = mycommodity.price
+            mycar.image = mycommodity.images['0']
+            mycar.type = this.data.type
+            mycar.number = this.data.number
+            console.log(mycar)
+            app.addRowToSet('shoppingCar', mycar, 
+              res => {
+                if(res) {
+                  wx.showToast({
+                    title: '添加成功~',
+                  })
+                  this.triggerEvent('handleClick')
+                }
+                return
+              },
+              err => {
+                console.log(err)
+              }
+            )
+           }
+         }
+      )
     }
   }
 })
