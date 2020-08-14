@@ -9,11 +9,41 @@
                 <text class="price-text">￥{{commodity.price}}</text>
                 <text class="price-name">{{commodity.name}}</text>
             </view>
-            
             <mp-icon icon="close" color="black" size="{{25}}" bindtap="handleClose" class="salary-close"></mp-icon>
         </view>
         <view class="type-box">
-            <text class="type-title">款式</text>
+            <view class="type-title">款式</view>
+            <view class="type-button">
+              <block wx:for="{{commodity.types}}" wx:key="index">
+              <!-- 选择颜色 -->
+                <!-- <view class="{{typeItem = index ? ''}}" id="{{index}}" bindtap="chooseType">
+                  {{item}}
+                </view> -->
+              </block>
+            </view>
+        </view>
+        <view class="fitting-box">
+          <view class="type-title">配件和规格</view>
+          <view class="type-button">
+            <block wx:for="{{commodity.fittings}}" wx:key="index">
+              <text class="fitting-text">{{item}}</text>
+            </block>
+          </view>
+        </view>
+        <view class="add-box">
+          购买数量
+          <view class="number-box">
+            <view class="number-reduce" bindtap="numberReduce">
+              <image mode="widthFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/reduce-icon.png?sign=a0bc274428affb80fc773ffe46ceb721&t=1597371032" style="width: 80%"></image>
+            </view>
+            <view class="number-show">{{number}}</view>
+            <view class="number-add" bindtap="numberAdd">
+              <image mode="widthFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/add-icon.png?sign=f7c0ce38c25a135427b6be3d0dbfeb9c&t=1597371048" style="width: 80%"></image>
+            </view>
+          </view>
+        </view>
+        <view class="cart-box">
+          <view class="cart-button" bindtap="addCart">加入购物车</view>
         </view>
     </view>
   </view>

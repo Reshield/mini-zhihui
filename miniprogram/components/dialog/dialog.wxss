@@ -34,13 +34,15 @@
   transform: translate3d(0, 100%, 0);
   transition: all .2s ease-in-out;
   visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .flex-box {
     display: flex;
     flex-direction: column;
     width: 90%;
-    background-color: burlywood;
 }
 
 .salary-content.active {
@@ -60,7 +62,6 @@
     position: relative;
     border-radius: 8rpx;
     box-shadow: 0rpx 0rpx 10rpx #666666;
-    margin-left: 5%;
     margin-top: -40rpx;
     float: left;
 }
@@ -69,28 +70,135 @@
     display: flex;
     flex-direction: column;
     margin-left: 2%;
+    margin-top: 2%;
 }
 
 .price-text {
-    font-size: 38rpx;
+  font-weight: 600;
+    font-size: 50rpx;
     color: #FF703A;
     margin-left: 2%;
 }
 
 .price-name {
     margin-left: 2%;
+    font-size: 30rpx;
 }
 
 .salary-close {
     position: absolute;
     top: 2%;
-    right: 2%;
+    right: 1%;
 }
 
 .type-box {
     height: 200rpx;
     clear: left;
-    margin-top: 2%;
+    margin-top: 10%;
+    border-top: 2rpx solid  #EFEFEF;
 }
 
+.type-title {
+  margin-top: 5%;
+}
 
+.type-button {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 4%;
+}
+
+.type-item {
+  display: block;
+  padding: 4rpx 20rpx;
+  border: 2rpx solid #BBBBBB;
+  border-radius: 6rpx;
+  margin-right: 2%;
+  font-size: 30rpx;
+}
+
+.type-item:active {
+  display: block;
+  padding: 4rpx 20rpx;
+  border: 2rpx solid #FF7373;
+  color: #FF7373;
+  border-radius: 6rpx;
+  margin-right: 2%;
+  font-size: 30rpx;
+}
+
+.fitting-box {
+  display: flex;
+  flex-direction: column;
+  border-top: 2rpx solid  #EFEFEF;
+  margin-bottom: 2%;
+}
+
+.fitting-text {
+  font-size: 28rpx;
+  color: #A2A2A2;
+}
+
+.add-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2rpx solid  #EFEFEF;
+  height: 150rpx;
+}
+
+.number-box {
+  display: flex;
+  flex-direction: row;
+  width: 40%;
+}
+
+.number-reduce {
+  width: 20%;
+  background-color: #FDD2D2;
+  border-radius: 10rpx 0rpx 0rpx 10rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.number-show {
+  border: 2rpx solid #cccccc;
+  width: 60%;
+  text-align: center;
+}
+
+.number-add {
+  width: 20%;
+  background-color: #FDD2D2;
+  border-radius: 0rpx 10rpx 10rpx 0rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-top: 2rpx solid  #EFEFEF;
+  height: 200rpx;
+}
+
+.cart-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 80%;
+  padding: 3% 0rpx;
+  background-color: #FF7373;
+  color: #ffffff;
+  font-size: 40;
+  font-weight: 600;
+  border-radius: 10rpx;
+}

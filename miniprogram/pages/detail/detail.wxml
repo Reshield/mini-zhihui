@@ -1,8 +1,8 @@
 <!--pages/detail/detail.wxml-->
-<swiper style="height: 300px">
+<swiper autoplay="true" style="height: {{swiperHeight}}px" indicator-color="#C2C2C2" indicator-active-color	="#000000">
   <block wx:for="{{swipers}}" wx:key="*this">
     <swiper-item>
-      <image src="{{item}}" class="swiper-img"></image>
+      <image src="{{item}}" class="swiper-img" mode="widthFix"></image>
     </swiper-item>
   </block>
 </swiper>
@@ -43,7 +43,7 @@
     <view class="tab-item {{currentId == item.id ? 'active': ''}}" bindtap="clickTab" id="{{item.id}}">{{item.title}}</view>
   </block>
 </view>
-<swiper current="currentId" style="height: 1000px">
+<swiper current="currentId" style="height: {{detailHeight}}px">
   <swiper-item>
     <block wx:for="{{commodity.images}}" wx:key="*this">
       <image src="{{item}}" mode="widthFix" style="width: 100%;" id="abc"></image>

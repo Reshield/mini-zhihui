@@ -5,12 +5,10 @@
     {{species}}
     <image src="../../images/icon/arrowDown.png" class="nav-arrow"></image>
   </view>
-  <image src="../../images/icon/shopBag.png" class="nav-bag"></image>
 </view>
 
 <view class="commodityList" wx:for="{{commoditiesList}}" wx:key="_id">
   <view class="commodityCart" bindtap="toDetail" id="{{item._id}}">
-    <image src="../../images/icon/s-cart-icon.png" class="cartIcon"></image>
     <image 
       src="{{item.images[0]}}"
       mode="aspectFit"

@@ -17,6 +17,7 @@ Page({
     ],
     currentId: 0,
     swiperHeight: 0,
+    detailHeight: 0,
     tabbarTop: 0,
     carNumber: 0,
     openid: '',
@@ -34,46 +35,6 @@ Page({
       isShow: !this.data.isShow
     })
     console.log(this.data.isShow)
-    // let that = this
-    // let mycommodity= this.data.commodity
-    // let _openid = this.data.openid
-    // console.log(mycommodity._id)
-    // app.getInfoWhere('shoppingCar', {_id: mycommodity._id, _openid}, 
-    //    res => {
-    //      console.log(res)
-    //      if(res.data.length != 0) {
-    //       wx.showToast({
-    //         title: '已经添加过了~',
-    //       })
-    //      }
-    //      else {
-    //       let mycar = {}
-    //       let mycommodity= this.data.commodity
-    //       mycar.fittings = mycommodity.fittings
-    //       mycar._id = mycommodity._id
-    //       mycar.name = mycommodity.name
-    //       mycar.price = mycommodity.price
-    //       mycar.image = mycommodity.images['0']
-    //       mycar.number = 1
-    //       app.addRowToSet('shoppingCar', mycar, 
-    //         res => {
-    //           if(res) {
-    //             wx.showToast({
-    //               title: '添加成功~',
-    //             })
-    //             that.setData({
-    //               carNumber: carNumber + 1
-    //             })
-    //           }
-    //           return
-    //         },
-    //         err => {
-    //           console.log(err)
-    //         }
-    //       )
-    //      }
-    //    }
-    // )
   },
   // 切换 tabs 
   clickTab: function(e) {
@@ -96,6 +57,7 @@ Page({
             resolve(e)
           }
           else {
+            console.log(e)
             reject()
           }
         }
@@ -110,18 +72,6 @@ Page({
           resolve(e)
         }
       )
-    })
-  },
-  // 设置高度
-  setHeight() {
-    wx.getSystemInfo({
-      success:(res) => {
-        let tabbarTop = res.windowHeight - 50
-        this.setData({
-          tabbarTop
-        })
-      },
-      complete: (res) => {},
     })
   },
   // 获取评价用户信息
@@ -156,6 +106,59 @@ Page({
       }
     )
   },
+  // 设置高度
+  setTabbrHeight() {
+    wx.getSystemInfo({
+      success:(res) => {
+        let tabbarTop = res.windowHeight - 50
+        this.setData({
+          tabbarTop
+        })
+      },
+      complete: (res) => {},
+    })
+  },
+  setSwiperHeight(e) {
+    let that = this
+    let imgNumber = e.data['0'].images.length
+    let myimage = e.data['0'].images['0']
+    let oimage = ''
+    // 截取云存储图片路径
+    for(let i=0; i<myimage.length; i++) {
+      if(myimage[i] == '?') {
+        oimage = myimage.substring(0, i)
+        break
+      }
+    }
+    // 设置 swiper 宽高比与图片宽高比一致
+    return new Promise((resolve, reject) => {
+      wx.getImageInfo({
+        src: oimage,
+        success(img) {
+          let imgWidth = img.width
+          let imgHeight = img.height
+          wx.getSystemInfo({
+            success(res) {
+              let winWidth = res.windowWidth
+              let swiperHeight = winWidth / imgWidth * imgHeight
+
+              // 设置商品详情的 swiper 高度
+              let detailHeight = swiperHeight * imgNumber
+              that.setData({
+                swiperHeight,
+                detailHeight
+              })
+              resolve(e)
+            }
+          })
+        },
+        fail(err) {
+          console.log(err)
+          reject()
+        }
+      })
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -176,7 +179,13 @@ Page({
         commodity: res.data['0'],
         swipers: res.data['0'].images
       })
+      return this.setSwiperHeight(res)
+      
+    })
+    .then(res => {
       return this.getComment(options.id)
+
+      
     })
     .then(res => {
       let commentNum = res.data.length
@@ -185,7 +194,7 @@ Page({
       })
       return this.getUser(res)
     })
-    this.setHeight()
+    this.setTabbrHeight()
     this.getCarNumber()
   },
   /**

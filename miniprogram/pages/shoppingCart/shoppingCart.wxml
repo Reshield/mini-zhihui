@@ -14,11 +14,11 @@
         <view class="commodity-price">￥{{item.price}}</view>
         <view class="number-box">
           <view class="number-reduce" bindtap="numberReduce" data-index="{{index}}">
-            <image mode="widthFix" src="../../images/icon/reduce-icon.png" style="width: 80%"></image>
+            <image mode="widthFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/reduce-icon.png?sign=a0bc274428affb80fc773ffe46ceb721&t=1597371032" style="width: 80%"></image>
           </view>
           <view class="number-show">{{item.number}}</view>
           <view class="number-add" bindtap="numberAdd" data-index="{{index}}">
-            <image mode="widthFix" src="../../images/icon/add-icon.png" style="width: 80%"></image>
+            <image mode="widthFix" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/add-icon.png?sign=f7c0ce38c25a135427b6be3d0dbfeb9c&t=1597371048" style="width: 80%"></image>
           </view>
         </view>
       </view>

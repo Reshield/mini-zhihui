@@ -24,7 +24,7 @@ page {
 }
 
 .cell-box {
-  margin-top: 3%;
+  margin-top: 1%;
 }
 
 .comment-box {
@@ -67,7 +67,7 @@ page {
   display: flex;
   flex-flow: row;
   justify-content: space-around;
-  margin-top: 2%;
+  margin-top: 1%;
 }
 
 .tab-item{
