@@ -11,6 +11,7 @@ Page({
     commodity: {},
     commentNum: 0,
     comment: {},
+    region: ['广东省', '广州市', '海珠区'],
     tabItems: [
       {id: 0, title: "商品详情"},
       {id: 1, title: "参数"}
@@ -29,13 +30,6 @@ Page({
       isShow: !this.data.isShow
     })
   },
-  // 添加至购物车
-  addCar() {
-    this.setData({
-      isShow: !this.data.isShow
-    })
-    console.log(this.data.isShow)
-  },
   // 切换 tabs 
   clickTab: function(e) {
     let that = this
@@ -47,6 +41,11 @@ Page({
         currentId: e.currentTarget.id
       })
     }
+  },
+  // 切换地址
+  picker(e) {
+    let region = e.detail
+    console.log(region)
   },
   // 获取商品信息
   getCommodity(id) {
@@ -141,7 +140,6 @@ Page({
             success(res) {
               let winWidth = res.windowWidth
               let swiperHeight = winWidth / imgWidth * imgHeight
-
               // 设置商品详情的 swiper 高度
               let detailHeight = swiperHeight * imgNumber
               that.setData({
@@ -184,8 +182,6 @@ Page({
     })
     .then(res => {
       return this.getComment(options.id)
-
-      
     })
     .then(res => {
       let commentNum = res.data.length

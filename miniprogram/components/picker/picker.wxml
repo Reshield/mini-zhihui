@@ -1,0 +1,8 @@
+<!--components/picker/picker.wxml-->
+<view class="section">
+  <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}">
+    <view class="picker">
+      {{region[0]}}，{{region[1]}}，{{region[2]}}
+    </view>
+  </picker>
+</view>

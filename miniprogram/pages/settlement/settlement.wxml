@@ -1,0 +1,20 @@
+<!--pages/settlement/settlement.wxml-->
+<view class="all-box">
+  <view class="cell-box">
+    <view class="address-text">请选择收货地址</view>
+    <mp-icon class="address-icon" icon="arrow" color="#AAAAAA" size="{{14}}"></mp-icon>
+  </view>
+</view>
+
+<block wx:for="{{commodities}}" wx:key="index">
+  <view class="cell-box">
+    <view class="commodity-card">
+      <image class="commodity-image" src="{{item.images[0]}}" mode="widthFix"/>
+      <view class="commodity-detail">
+      </view>
+    </view>
+  </view>
+</block>
+  
+
+  

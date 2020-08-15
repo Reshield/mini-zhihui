@@ -1,0 +1,4 @@
+/* components/picker/picker.wxss */
+.picker {
+    font-size: 28rpx;
+}

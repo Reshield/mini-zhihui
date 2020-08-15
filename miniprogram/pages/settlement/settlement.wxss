@@ -1,0 +1,26 @@
+/* pages/settlement/settlement.wxss */
+.all-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%
+}
+
+.cell-box {
+  width: 90%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  border-radius: 10rpx;
+  padding: 10rpx 0rpx;
+}
+
+.address-text {
+  margin-left: 2%;
+}
+
+.address-icon {
+  margin-right: 2%;
+}

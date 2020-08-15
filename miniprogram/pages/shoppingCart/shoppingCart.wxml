@@ -46,7 +46,7 @@
     <mp-icon type="field" icon="done2" color="{{selectAll ? '#FF6539' : '#cccccc'}}" size="{{30}}" bindtap="selectAll"></mp-icon>
     全选
   </view>
-  <view class="footer-button">去支付</view>
+  <view class="footer-button" bindtap="toSettlement">结算({{cartCount}})</view>
 </view>
 
 <view class="empty-box" wx:if="{{!showCar}}">

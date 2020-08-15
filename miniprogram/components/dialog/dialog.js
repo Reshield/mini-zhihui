@@ -13,7 +13,12 @@ Component({
     commodity: {
       type: Object,
       value: {}
-    }
+    },
+    region: {
+      type: Array,
+      value: []
+    },
+
   },
 
   /**
@@ -63,12 +68,11 @@ Component({
       let _openid = userInfo.openid
       app.getInfoWhere('shoppingCar', {_id: mycommodity._id}, 
          res => {
-           console.log(res)
            if(res.data.length != 0) {
             wx.showToast({
               title: '已经添加过了~',
             })
-            this.triggerEvent('handleClick')
+            this.triggerEvent('cancle')
            }
            else {
             let mycar = {}
@@ -80,6 +84,7 @@ Component({
             mycar.image = mycommodity.images['0']
             mycar.type = this.data.type
             mycar.number = this.data.number
+            mycar.region = this.data.region
             console.log(mycar)
             app.addRowToSet('shoppingCar', mycar, 
               res => {
@@ -87,7 +92,7 @@ Component({
                   wx.showToast({
                     title: '添加成功~',
                   })
-                  this.triggerEvent('handleClick')
+                  this.triggerEvent('cancle')
                 }
                 return
               },

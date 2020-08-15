@@ -12,11 +12,14 @@
 </view>
 
 <mp-cells class="cell-box">
-  <mp-cell value="已选" footer="UNPO筋膜枪" link="true"></mp-cell>
-  <mp-cell value="送至" footer="北京市 朝阳区" link="true"></mp-cell>
+  <mp-cell value="已选" footer="UNPO筋膜枪" link="true" bindtap="handleClick"></mp-cell>
+  <mp-cell value="送至" link="true">
+    <picker slot="footer" bind:picker="picker"></picker>
+  </mp-cell>
 </mp-cells>
+
 <mp-cells class="cell-box">
-  <mp-cell value="配件" link="true">
+  <mp-cell value="配件" link="true" bindtap="handleClick">
     <block wx:for="{{commodity.fittings}}" wx:key="*this">
       <view slot="footer">{{item}}</view>
     </block>
@@ -67,7 +70,7 @@
     </navigator>
   </view>
   <view class="buy-box">
-    <view class="add-car" bind:tap="addCar">
+    <view class="add-car" bind:tap="handleClick">
       加入购物车
     </view>
     <view class="to-buy">
@@ -77,7 +80,9 @@
 </view>
 
 <!-- 上拉弹窗 -->
-<dialog isShow="{{isShow}}" commodity="{{commodity}}" bind:cancle="handleClick"></dialog>
+<dialog isShow="{{isShow}}" commodity="{{commodity}}" region="{{region}}" bind:cancle="handleClick"></dialog>
+
+
   
   
 

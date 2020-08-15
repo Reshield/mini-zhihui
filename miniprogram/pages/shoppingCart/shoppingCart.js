@@ -8,6 +8,8 @@ Page({
    */
   data: {
     commodities: [],
+    willBuy: [],
+    cartCount: 0,
     total: null,
     coupon: 0,
     finally: null,
@@ -18,6 +20,19 @@ Page({
     footerHeight: 50,
     showCar: false,
     _openid: '',
+  },
+  toSettlement() {
+    // 暂时默认购物车内的商品都要前往支付
+    let that = this
+    let willBuyId = []
+    that.setData({
+      willBuy: this.data.commodities
+    })
+    this.data.willBuy.forEach((item, index) => {
+      willBuyId.push(item._id)
+    })
+    console.log(willBuyId)
+    
   },
   // 监听横向滚动条滑动
   scroll(e) {
@@ -74,16 +89,16 @@ Page({
     let that = this
     wx.getSystemInfo({
       success (res) {
-       let scrollHeight = res.windowHeight * 0.5
-       let cartHeight = scrollHeight - 10
-       let priceHeight = res.windowHeight * 0.3
-       let footerHeight = res.windowHeight * 0.08
-       that.setData({
-         scrollHeight,
-         cartHeight,
-         priceHeight,
-         footerHeight
-       })
+        let scrollHeight = res.windowHeight * 0.5
+        let cartHeight = scrollHeight - 10
+        let priceHeight = res.windowHeight * 0.3
+        let footerHeight = res.windowHeight * 0.08
+        that.setData({
+          scrollHeight,
+          cartHeight,
+          priceHeight,
+          footerHeight
+        })
       },
       fail(err) {
         console.log(err)
@@ -98,7 +113,8 @@ Page({
       res => {
         that.setData({
           showCar: true,
-          commodities: res.data
+          commodities: res.data,
+          cartCount: res.data.length
         })
       }
       )

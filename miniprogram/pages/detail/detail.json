@@ -4,7 +4,8 @@
     "mp-cells": "weui-miniprogram/cells/cells",
     "mp-icon": "weui-miniprogram/icon/icon",
     "mp-badge": "weui-miniprogram/badge/badge",
-    "dialog": "../../components/dialog/dialog"
+    "dialog": "../../components/dialog/dialog",
+    "picker": "../../components/picker/picker"
   },
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "商品详情"
