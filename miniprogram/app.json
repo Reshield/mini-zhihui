@@ -1,9 +1,9 @@
 {
   "pages": [
+    "pages/shoppingCart/shoppingCart",
     "pages/home/home",
     "pages/settlement/settlement",
     "pages/detail/detail",
-    "pages/shoppingCart/shoppingCart",
     "pages/me/me",
     "pages/order/order",
     "pages/emails/emails",

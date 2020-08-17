@@ -6,14 +6,18 @@
   width: 100%
 }
 
-.cell-box {
+.cell-box, .cell-commodity {
   width: 90%;
   background-color: #ffffff;
   display: flex;
+  border-radius: 10rpx;
+  margin-bottom: 2%;
+}
+
+.cell-box {
   flex-direction: row;
   align-content: center;
   justify-content: space-between;
-  border-radius: 10rpx;
   padding: 10rpx 0rpx;
 }
 
@@ -23,4 +27,56 @@
 
 .address-icon {
   margin-right: 2%;
+}
+
+.cell-commodity {
+  flex-direction: column;
+}
+
+.commodity-card {
+  display: flex;
+  flex-direction: row;
+}
+
+.commodity-image {
+  width: 50%;
+  margin-left: 3%;
+  margin-top: 3%;
+  background-color: aqua;
+}
+
+.commodity-detail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-left: 10%;
+  width: 100%;
+}
+
+.detail-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-name {
+  color: #000000;
+  font-size: large;
+}
+
+.detail-type {
+  color: #B4B4B4;
+  font-size: small;
+}
+
+.detail-price {
+  color: #FF6539;
+}
+
+.remarks-box {
+  display: flex;
+  flex-direction: row;
+}
+
+.remarks-input {
+  width: 80%;
 }

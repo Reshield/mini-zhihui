@@ -8,7 +8,7 @@ Page({
    */
   data: {
     commodities: [],
-    willBuy: [],
+    willBuy: null,
     cartCount: 0,
     total: null,
     coupon: 0,
@@ -24,15 +24,26 @@ Page({
   toSettlement() {
     // 暂时默认购物车内的商品都要前往支付
     let that = this
-    let willBuyId = []
-    that.setData({
-      willBuy: this.data.commodities
-    })
-    this.data.willBuy.forEach((item, index) => {
-      willBuyId.push(item._id)
-    })
-    console.log(willBuyId)
     
+    let willBuy = this.data.commodities
+    let myArray = []
+
+    willBuy.forEach(item => {
+      let myitem = {}
+      myitem._id = item._id
+      myitem.name = item.name
+      myitem.price = item.price
+      myitem.image = app.cutImgUrl(item.image)
+      myitem.type = item.type
+      myitem.fittings = item.fittings
+      myitem.number = item.number
+      myArray.push(myitem)
+    })
+
+    let o = JSON.stringify(myArray)
+    wx.navigateTo({
+      url: '../settlement/settlement?commodityArray=' + o,
+    })
   },
   // 监听横向滚动条滑动
   scroll(e) {
@@ -117,7 +128,7 @@ Page({
           cartCount: res.data.length
         })
       }
-      )
+    )
   },
   /**
    * 生命周期函数--监听页面加载

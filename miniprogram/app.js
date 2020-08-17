@@ -18,6 +18,17 @@ App({
     }
   },
   // ---------- 常用函数 ----------
+  // ---------- 截掉云存储图片？后面的路径 ----------
+  cutImgUrl: function(imgUrl, callback ) {
+    let oimage = ''
+    for(let i=0; i<imgUrl.length; i++) {
+      if(imgUrl[i] == '?') {
+        oimage = imgUrl.substring(0, i)
+        break
+      }
+    }
+    return oimage
+  },
   // ---------- 数据库操作 ----------
   // 排序后取出数据
   getInfoByOrder: function (setName, ruleItem, orderFuc,callback) {

@@ -120,15 +120,10 @@ Page({
   setSwiperHeight(e) {
     let that = this
     let imgNumber = e.data['0'].images.length
-    let myimage = e.data['0'].images['0']
     let oimage = ''
     // 截取云存储图片路径
-    for(let i=0; i<myimage.length; i++) {
-      if(myimage[i] == '?') {
-        oimage = myimage.substring(0, i)
-        break
-      }
-    }
+    oimage = app.cutImgUrl(e.data['0'].images['0'])
+
     // 设置 swiper 宽高比与图片宽高比一致
     return new Promise((resolve, reject) => {
       wx.getImageInfo({

@@ -62,10 +62,8 @@ Component({
       })
     },
     addCart() {
-      let that = this
       let mycommodity= this.data.commodity
       let userInfo = wx.getStorageSync('userInfo')
-      let _openid = userInfo.openid
       app.getInfoWhere('shoppingCar', {_id: mycommodity._id}, 
          res => {
            if(res.data.length != 0) {

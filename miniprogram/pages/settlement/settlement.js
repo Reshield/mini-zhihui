@@ -1,4 +1,6 @@
 // pages/settlement/settlement.js
+const app = getApp()
+
 Page({
 
   /**
@@ -7,18 +9,19 @@ Page({
   data: {
     commodities: []
   },
-
+  getCommodities(oArray) {
+    let that = this
+    that.setData({
+      commodities:oArray
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(JSON.parse(options.commodities))
-    // let commodities = JSON.parse(options.commodities)
-    // console.log(commodities)
-    // let that = this
-    // that.setData({
-    //   commodities
-    // })
+    let self = this
+    let myArray = JSON.parse(options.commodityArray)
+    self.getCommodities(myArray)
   },
 
   /**
