@@ -10,7 +10,7 @@
   width: 90%;
   background-color: #ffffff;
   display: flex;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
   margin-bottom: 2%;
 }
 
@@ -31,18 +31,25 @@
 
 .cell-commodity {
   flex-direction: column;
+  align-items: center;
+}
+
+.cell-weight {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding-top: 3%;
+  padding-bottom: 3%;
 }
 
 .commodity-card {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
 }
 
 .commodity-image {
-  width: 50%;
-  margin-left: 3%;
-  margin-top: 3%;
-  background-color: aqua;
+  width: 100%;
 }
 
 .commodity-detail {
@@ -72,11 +79,28 @@
   color: #FF6539;
 }
 
-.remarks-box {
+.number-box {
   display: flex;
   flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.box-title {
+  margin-top: 2%;
+  font-size: 32rpx;
+}
+
+.number-text {
+  font-size: 28rpx;
+  color: #AAAAAA;
+}
+
+.remarks-box {
+  background-color: #F0F0F0;
 }
 
 .remarks-input {
   width: 80%;
+  padding-left: 2%;
 }

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "picker": "../../components/picker/picker"
+  },
+  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "收货地址"
+}

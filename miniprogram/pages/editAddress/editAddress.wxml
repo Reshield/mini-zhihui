@@ -1,0 +1,27 @@
+<!--pages/editAddress/editAddress.wxml-->
+<mp-cells>
+    <mp-cell>
+      <view slot="title">收货人</view>
+      <view slot="footer">
+        <input type="text" bindinput="setReceiver"/>
+      </view>
+    </mp-cell>
+    <mp-cell>
+      <view slot="title">联系电话</view>
+      <view slot="footer">
+        <input type="text" bindinput="setPhone"/>
+      </view>
+    </mp-cell>
+    <mp-cell title="所在地区" link="true" hover="true">
+      <picker slot="footer" bind:picker="picker"></picker>
+    </mp-cell>
+    <mp-cell ext-class="address-cell">
+      <view slot="title">详细地址</view>
+      <textarea value="{{address}}" id="inputAddress"  bindinput="setAddress" auto-height="true" style="width:80%; margin-left:10%"></textarea>
+    </mp-cell>
+</mp-cells>
+<view class="save-box">
+  <navigator class="save-button" url="#" bindtap="saveAddress">保存地址</navigator>
+</view>
+  
+

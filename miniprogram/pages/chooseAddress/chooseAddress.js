@@ -1,32 +1,27 @@
-// pages/settlement/settlement.js
-const app = getApp()
-
+// pages/chooseAddress/chooseAddress.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    commodities: []
+    theShow: true,
+    addressList: []
   },
-  toAddress() {
-    wx.navigateTo({
-      url: '../chooseAddress/chooseAddress',
-    })
+  newEditAddress(e) {
+    parseInt(e.number)
+    this.data.addressList.push(e)
+    console.log(this.data.addressList)
   },
-  getCommodities(oArray) {
-    let that = this
-    that.setData({
-      commodities:oArray
-    })
+  // 获取地址
+  getAddress(e) {
+    console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let self = this
-    let myArray = JSON.parse(options.commodityArray)
-    self.getCommodities(myArray)
+    this.newEditAddress(options)
   },
 
   /**

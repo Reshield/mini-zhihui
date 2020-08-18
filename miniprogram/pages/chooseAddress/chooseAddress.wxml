@@ -1,0 +1,16 @@
+<!--pages/chooseAddress/chooseAddress.wxml-->
+<view class="all-box">
+  <image wx:if="{{theShow}}" class="address-icon" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/address.png" mode="widthFix"></image>
+  <text wx:if="{{theShow}}">您还未添加地址~</text>
+
+  <view class="button-box">
+    <navigator class="manully-box" url="../editAddress/editAddress" hover-class="navigator-hover" open-type="navigate">
+      手动添加
+    </navigator>
+    <navigator class="auto-box" url="#" hover-class="navigator-hover" open-type="navigate">
+      自动获取
+    </navigator>
+  </view>
+</view>
+
+  

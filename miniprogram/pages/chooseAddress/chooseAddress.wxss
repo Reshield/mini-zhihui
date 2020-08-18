@@ -1,0 +1,38 @@
+/* pages/chooseAddress/chooseAddress.wxss */
+.all-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.address-icon {
+  width: 30%;
+}
+
+.button-box {
+  margin-top: 5%;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+.manully-box, .auto-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 100rpx;
+  width: 40%;
+  padding: 10rpx 0rpx;
+  color: #ffffff;
+  font-size: 36rpx;
+}
+
+.manully-box {
+  background-color: #FF7373;
+}
+
+.auto-box {
+  background-color: #07C160;
+}

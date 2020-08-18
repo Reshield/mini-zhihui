@@ -1,25 +1,31 @@
 <!--pages/settlement/settlement.wxml-->
 <view class="all-box">
-  <view class="cell-box">
+  <view class="cell-box" bindtap="toAddress">
     <view class="address-text">请选择收货地址</view>
     <mp-icon class="address-icon" icon="arrow" color="#AAAAAA" size="{{14}}"></mp-icon>
   </view>
   <block wx:for="{{commodities}}" wx:key="index">
     <view class="cell-commodity">
-      <view class="commodity-card">
-        <image class="commodity-image" src="{{item.image}}" mode="widthFix"></image>
-        <view class="commodity-detail">
-          <view class="detail-box">
-            <text class="detail-name">{{item.name}}</text>
-            <text class="detail-type">款式：{{item.type}}</text>
+      <view class="cell-weight">
+        <view class="commodity-card">
+          <image class="commodity-image" src="{{item.image}}" mode="widthFix"></image>
+          <view class="commodity-detail">
+            <view class="detail-box">
+              <text class="detail-name">{{item.name}}</text>
+              <text class="detail-type">款式：{{item.type}}</text>
+            </view>
+            <view class="detail-price">￥{{item.price}}</view>
           </view>
-          <view class="detail-price">￥{{item.price}}</view>
+        </view>
+        <view class="number-box">
+          <view class="box-title">数量 :</view>
+          <view class="number-text">x{{item.number}}</view>
+        </view>
+        <view class="remarks-box">
+            <view class="box-title">备注</view>
+            <input type="text" class="remarks-input"/>
         </view>
       </view>
-      <view class="remarks-box">
-          备注：
-          <input type="text" class="remarks-input"/>
-        </view>
     </view>
   </block>
 </view>
