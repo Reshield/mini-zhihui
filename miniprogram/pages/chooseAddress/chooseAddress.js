@@ -1,4 +1,6 @@
 // pages/chooseAddress/chooseAddress.js
+const app = getApp()
+
 Page({
 
   /**
@@ -6,31 +8,59 @@ Page({
    */
   data: {
     theShow: true,
-    addressList: []
+    addressList: [],
+    deColor: "#F44848",
+    noColor: "#ACACAC",
   },
-  newEditAddress(e) {
-    parseInt(e.number)
-    this.data.addressList.push(e)
-    console.log(this.data.addressList)
+  setDefault(e) {
+    let userInfo = wx.getStorageSync('userInfo')
+    let _openid = userInfo.openid
+    let addArray = this.data.addressList
+    let that = this
+    let i = e.target.dataset.index
+    addArray.forEach((item,index) => {
+      if(index == i) {
+        item.default = 1
+      }
+      else {
+        item.default = 0
+      }
+    })
+    // app.updateInfoWhere('address', {_openid}, addArray,
+    //   res => {
+    //     console.log(res)
+    //   }
+    // )
+    that.setData({
+      addressList: addArray
+    })
   },
   // 获取地址
-  getAddress(e) {
-    console.log(e)
+  getAddress() {
+    let userInfo = wx.getStorageSync('userInfo')
+    let that = this
+    let _openid = userInfo.openid
+    app.getInfoWhere('address', {_openid},
+      res => {
+        that.setData({
+          addressList: res.data,
+          theShow: false
+        })
+      }
+    )
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.newEditAddress(options)
+    this.getAddress()
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
 
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

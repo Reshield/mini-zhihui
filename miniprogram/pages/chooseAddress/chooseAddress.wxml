@@ -2,7 +2,40 @@
 <view class="all-box">
   <image wx:if="{{theShow}}" class="address-icon" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/address.png" mode="widthFix"></image>
   <text wx:if="{{theShow}}">您还未添加地址~</text>
-
+  
+  <block wx:for="{{addressList}}" wx:key="index">
+    <view class="address-box">
+      <view class="header-box">
+        <text class="">
+          {{item.receiver}}
+        </text>
+        <text class="">
+          {{item.phone}}
+        </text>
+      </view>
+      <view class="middle-box">
+        收货地址：{{item.region}} {{item.address}}
+      </view>
+      <view class="line-box"></view>
+      <view class="footer-box">
+        <view class="">
+          <!-- <mp-icon icon="done2" data-index='{{index}}' type="{{item.default ? field : outline}}" color="{{item.default ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon> -->
+          <mp-icon icon="done2" data-index='{{index}}' type="field" color="{{item.default == 1 ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon>
+          <text class="">设为默认</text>
+        </view>
+        <view class="right-button">
+          <view>
+            <mp-icon icon="pencil"  color="#ACACAC" size="{{22}}"></mp-icon>
+            <text class="">编辑</text>
+          </view>
+          <view>
+            <mp-icon icon="delete" color="#ACACAC" size="{{22}}"></mp-icon>
+            <text class="">删除</text>
+          </view>
+        </view>   
+      </view>
+    </view>
+  </block>
   <view class="button-box">
     <navigator class="manully-box" url="../editAddress/editAddress" hover-class="navigator-hover" open-type="navigate">
       手动添加

@@ -39,7 +39,6 @@ App({
       .then(callback)
       .catch(console.error)
   },
-
   // 根据条件取获数据
   getInfoWhere: function(setName, ruleObj, callback) {
     const db = wx.cloud.database()
@@ -63,6 +62,14 @@ App({
     const db = wx.cloud.database()
     db.collection(setName).where(ruleObj)
       .remove()
+      .then(callback)
+      .catch(console.error)
+  },
+  // 根据条件更新数据
+  updateInfoWhere: function(setName, ruleObj, infoObject, callback) {
+    const db = wx.cloud.database()
+    db.collection(setName).where(ruleObj)
+      .update(infoObject)
       .then(callback)
       .catch(console.error)
   }

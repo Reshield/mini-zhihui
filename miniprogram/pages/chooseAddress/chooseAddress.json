@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "mp-icon": "weui-miniprogram/icon/icon"
   },
   "navigationBarTextStyle": "black",
   "navigationBarTitleText": "选择地址"

@@ -10,6 +10,51 @@
   width: 30%;
 }
 
+.address-box {
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10rpx;
+  background-color: #ffffff;
+  margin-top: 2%;
+}
+
+.header-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.middle-box {
+  width: 90%;
+  font-size: 30rpx;
+}
+
+.line-box {
+  height: 2rpx;
+  width: 100%;
+  background-color: #BCBCBC;
+}
+
+.footer-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin-bottom: 2%;
+}
+
+.middle-box, .line-box, .footer-box {
+  margin-top: 2%;
+}
+
+.right-button {
+  display: flex;
+}
+
 .button-box {
   margin-top: 5%;
   width: 90%;

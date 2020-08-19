@@ -38,15 +38,28 @@ Page({
     let address = this.data.address
     let receiver = this.data.receiver
     let phone = this.data.phone
-    app.addRowToSet('address', {receiver, phone, region, address},
-      res => {
-        if(res) {
-          wx.navigateTo({
-            url: `../chooseAddress/chooseAddress?receiver=${receiver}&phone=${phone}&region=${region}&address=${address}`,
-          })
+    let myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(17[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+    if(receiver == '' || phone == null || address == '') {
+      wx.showToast({
+        title: '收货信息未填写完整',
+      })
+    }
+    else if(!myreg.test(phone)){
+      wx.showToast({
+        title: '电话输入不正确',
+      })
+    }
+    else {
+      app.addRowToSet('address', {receiver, phone, region, address},
+        res => {
+          if(res) {
+            wx.navigateTo({
+              url: "../chooseAddress/chooseAddress",
+            })
+          }
         }
-      }
-    )
+      )
+    }
   },
   // 切换弹出窗显示
   handleClick() {
