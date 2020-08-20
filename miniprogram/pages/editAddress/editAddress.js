@@ -50,15 +50,83 @@ Page({
       })
     }
     else {
-      app.addRowToSet('address', {receiver, phone, region, address},
-        res => {
-          if(res) {
-            wx.navigateTo({
-              url: "../chooseAddress/chooseAddress",
-            })
+    //   let userAddress = {}
+    //   userAddress.addressArray = [{receiver, phone, region, address}]
+    //   app.addRowToSet('address', userAddress,
+    //     res => {
+    //       if(res) {
+    //         wx.navigateTo({
+    //           url: "../chooseAddress/chooseAddress",
+    //         })
+    //       }
+    //     }
+    //   )
+    // }
+      function getAddress() {
+        return new Promise((resolve, reject) => {
+          let userInfo = wx.getStorageSync('userInfo')
+          let _openid = userInfo.openid
+          app.getInfoWhere('address', {_openid},
+            res => {
+              resolve(res.data)
+            },
+            err => {
+              console.log(err)
+            }
+          )
+        })
+      }
+      // 如果该用户未添加地址
+      function ifListEmpty() {
+        let userAddress = {}
+        userAddress.addressArray = [{receiver, phone, region, address}]
+        app.addRowToSet('address', userAddress,
+          res => {
+            if(res) {
+              wx.navigateTo({
+                url: "../chooseAddress/chooseAddress",
+              })
+            }
           }
+        )
+      }
+      // 如果用户已有地址
+      function ifExist(data) {
+        let myaddress = data['0']
+        return new Promise((resolve, reject) => {
+          let _id = myaddress._id
+          let newAddress = {}
+          myaddress.addressArray.push({receiver, phone, region, address})
+          newAddress.addressArray = myaddress.addressArray
+          wx.cloud.callFunction({
+            name: 'update',
+            data: {
+              _id: _id,
+              setName: 'address',
+              updateInfoObj: newAddress
+            },
+            success: res => {
+              console.log(res)
+              resolve(res)
+            },
+            fail: err => {
+              console.log(err)
+              reject(err)
+            }
+          })
+        })
+      }
+
+      getAddress()
+      .then(myaddress => {
+        console.log(myaddress.length)
+        if(myaddress.length == 0) {
+          return ifListEmpty()
         }
-      )
+        else {
+          return ifExist(myaddress)
+        }
+      }) 
     }
   },
   // 切换弹出窗显示

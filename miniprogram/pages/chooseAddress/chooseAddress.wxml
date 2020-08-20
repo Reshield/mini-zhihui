@@ -19,7 +19,6 @@
       <view class="line-box"></view>
       <view class="footer-box">
         <view class="">
-          <!-- <mp-icon icon="done2" data-index='{{index}}' type="{{item.default ? field : outline}}" color="{{item.default ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon> -->
           <mp-icon icon="done2" data-index='{{index}}' type="field" color="{{item.default == 1 ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon>
           <text class="">设为默认</text>
         </view>

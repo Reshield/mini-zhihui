@@ -26,14 +26,27 @@ Page({
         item.default = 0
       }
     })
-    // app.updateInfoWhere('address', {_openid}, addArray,
-    //   res => {
-    //     console.log(res)
-    //   }
-    // )
-    that.setData({
-      addressList: addArray
+    console.log(addArray)
+    wx.cloud.callFunction({
+      name: 'update',
+      data: {
+        setName: 'address',
+        updateInfoObj: addArray
+      },
+      success: res => {
+        console.log(res)
+        that.setData({
+          addressList: addArray
+        })
+      },
+      fail: err => {
+        console.log(err)
+      },
+      complete: () => {
+        // ...
+      }
     })
+    
   },
   // 获取地址
   getAddress() {
@@ -42,8 +55,9 @@ Page({
     let _openid = userInfo.openid
     app.getInfoWhere('address', {_openid},
       res => {
+        console.log(res)
         that.setData({
-          addressList: res.data,
+          addressList: res.data['0'].addressArray,
           theShow: false
         })
       }
