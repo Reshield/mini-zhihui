@@ -50,18 +50,6 @@ Page({
       })
     }
     else {
-    //   let userAddress = {}
-    //   userAddress.addressArray = [{receiver, phone, region, address}]
-    //   app.addRowToSet('address', userAddress,
-    //     res => {
-    //       if(res) {
-    //         wx.navigateTo({
-    //           url: "../chooseAddress/chooseAddress",
-    //         })
-    //       }
-    //     }
-    //   )
-    // }
       function getAddress() {
         return new Promise((resolve, reject) => {
           let userInfo = wx.getStorageSync('userInfo')
@@ -78,17 +66,17 @@ Page({
       }
       // 如果该用户未添加地址
       function ifListEmpty() {
-        let userAddress = {}
-        userAddress.addressArray = [{receiver, phone, region, address}]
-        app.addRowToSet('address', userAddress,
-          res => {
-            if(res) {
-              wx.navigateTo({
-                url: "../chooseAddress/chooseAddress",
-              })
+        return new Promise((resolve, reject) => {
+          let userAddress = {}
+          let ifDefault = 1
+          userAddress.addressArray = [{receiver, phone, region, address, ifDefault}]
+          app.addRowToSet('address', userAddress,
+            res => {
+              console.log(res)
+              resolve(res)
             }
-          }
-        )
+          )
+        })
       }
       // 如果用户已有地址
       function ifExist(data) {
@@ -96,8 +84,10 @@ Page({
         return new Promise((resolve, reject) => {
           let _id = myaddress._id
           let newAddress = {}
-          myaddress.addressArray.push({receiver, phone, region, address})
+          let ifDefault = 0
+          myaddress.addressArray.push({receiver, phone, region, address, ifDefault})
           newAddress.addressArray = myaddress.addressArray
+          newAddress.default = 0
           wx.cloud.callFunction({
             name: 'update',
             data: {
@@ -116,17 +106,21 @@ Page({
           })
         })
       }
-
       getAddress()
       .then(myaddress => {
         console.log(myaddress.length)
-        if(myaddress.length == 0) {
+        if(myaddress.length < 1) {
           return ifListEmpty()
         }
         else {
           return ifExist(myaddress)
         }
-      }) 
+      })
+      .then(res => {
+        wx.navigateTo({
+          url: '../chooseAddress/chooseAddress',
+        })
+      })
     }
   },
   // 切换弹出窗显示

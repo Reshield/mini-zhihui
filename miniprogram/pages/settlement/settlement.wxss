@@ -6,7 +6,7 @@
   width: 100%
 }
 
-.cell-box, .cell-commodity {
+.cell-box, .cell-commodity, .address-box {
   width: 90%;
   background-color: #ffffff;
   display: flex;
@@ -103,4 +103,15 @@
 .remarks-input {
   width: 80%;
   padding-left: 2%;
+}
+
+.address-box {
+  padding: 10rpx 0rpx;
+  justify-content: center;
+}
+
+.address-weight {
+  display: flex;
+  width: 90%;
+  font-size: 28rpx;
 }

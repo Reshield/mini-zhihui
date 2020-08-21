@@ -22,14 +22,20 @@
           <view class="number-text">x{{item.number}}</view>
         </view>
         <view class="remarks-box">
-            <view class="box-title">备注</view>
-            <input type="text" class="remarks-input"/>
+          <view class="box-title">备注</view>
+          <input type="text" class="remarks-input"/>
         </view>
       </view>
     </view>
   </block>
+  <view class="address-box">
+    <view class="address-weight">
+      收货地址：{{address.region}} {{address.address}}
+    </view>
+  </view>
 </view>
 
+  
 
   
 

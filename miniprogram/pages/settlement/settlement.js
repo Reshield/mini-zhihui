@@ -7,11 +7,21 @@ Page({
    * 页面的初始数据
    */
   data: {
+    address: {},
     commodities: []
   },
   toAddress() {
-    wx.navigateTo({
-      url: '../chooseAddress/chooseAddress',
+    wx.setStorage({
+      key:"commodities",
+      data: this.data.commodities,
+      success: res => {
+        wx.navigateTo({
+          url: '../chooseAddress/chooseAddress',
+        })
+      },
+      fail: err => {
+        return
+      }
     })
   },
   getCommodities(oArray) {
@@ -25,8 +35,19 @@ Page({
    */
   onLoad: function (options) {
     let self = this
-    let myArray = JSON.parse(options.commodityArray)
-    self.getCommodities(myArray)
+    if(options.commodityArray) {
+      let myArray = JSON.parse(options.commodityArray)
+      self.getCommodities(myArray)
+    }
+    else {
+      let address = JSON.parse(options.address)
+      let commodities = wx.getStorageSync('commodities')
+      this.setData({
+        commodities,
+        address
+      })
+    }
+    
   },
 
   /**

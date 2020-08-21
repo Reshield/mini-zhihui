@@ -2,7 +2,6 @@
 <view class="all-box">
   <image wx:if="{{theShow}}" class="address-icon" src="https://6d69-mini-zhihui-fmj55-1302661879.tcb.qcloud.la/icons/address.png" mode="widthFix"></image>
   <text wx:if="{{theShow}}">您还未添加地址~</text>
-  
   <block wx:for="{{addressList}}" wx:key="index">
     <view class="address-box">
       <view class="header-box">
@@ -19,17 +18,17 @@
       <view class="line-box"></view>
       <view class="footer-box">
         <view class="">
-          <mp-icon icon="done2" data-index='{{index}}' type="field" color="{{item.default == 1 ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon>
+          <mp-icon icon="done2" data-index='{{index}}' type="field" color="{{item.ifDefault == 1 ? deColor : noColor }}" size="{{22}}" bindtap="setDefault"></mp-icon>
           <text class="">设为默认</text>
         </view>
         <view class="right-button">
-          <view>
+          <view class="pencli-box" bindtap="chooseAddress" data-index='{{index}}'>
             <mp-icon icon="pencil"  color="#ACACAC" size="{{22}}"></mp-icon>
-            <text class="">编辑</text>
+            <view class="pencil-text">选中</view>
           </view>
-          <view>
+          <view bindtap="deleteAddress" data-index='{{index}}' class="delete-box">
             <mp-icon icon="delete" color="#ACACAC" size="{{22}}"></mp-icon>
-            <text class="">删除</text>
+            <view class="delete-text">删除</view>
           </view>
         </view>   
       </view>
@@ -44,5 +43,9 @@
     </navigator>
   </view>
 </view>
+
+<mp-dialog title="test" show="{{dialogShow}}" buttons="{{buttons}}" bindbuttontap="tapDialogButton">
+  <view>是否要删除该地址？</view>
+</mp-dialog>
 
   

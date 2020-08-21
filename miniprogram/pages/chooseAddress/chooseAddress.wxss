@@ -55,6 +55,15 @@
   display: flex;
 }
 
+.pencli-box, .delete-box{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.delete-box {
+}
+
 .button-box {
   margin-top: 5%;
   width: 90%;
