@@ -116,9 +116,22 @@ Page({
   chooseAddress(e) {
     let index = e.currentTarget.dataset.index
     let myAddress = this.data.addressList[index]
-    wx.navigateTo({
-      url: '../settlement/settlement?address=' + JSON.stringify(myAddress),
-    })
+    
+
+    let arr = getCurrentPages() // 获取当前页面栈的数据
+    let lastPage = (arr.length >= 2) ? arr[arr.length - 2] : undefined // 获取上一个页面的数据【监听到上一个页面】
+    if (!!lastPage && lastPage.route == 'pages/settlement/settlement') {
+      /* 
+      这里我们就拿到了上一个页面的页面对象, 这里其实我们就可以使用lastPage做很多事情了, 
+      例如直接操作lastPage.data, 修改上一个页面的数据  
+      或者调用这个页面内的方法,
+      我上一个页面预留了一个更新方法, 所以这里就直接用上一个页面调用数据刷新的方法, 我这里给赋值, 就可以携带数据回上一个页面了
+      */
+      lastPage.getChooseAddress(myAddress) // 这里的 getChooseAddress 是上一个页面的函数
+
+      // 返回上一个页面
+      wx.navigateBack()      
+    }
   },
   // 获取地址
   getAddress() {

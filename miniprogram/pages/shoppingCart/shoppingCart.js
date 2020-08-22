@@ -24,7 +24,6 @@ Page({
   toSettlement() {
     // 暂时默认购物车内的商品都要前往支付
     let that = this
-    
     let willBuy = this.data.commodities
     let myArray = []
 

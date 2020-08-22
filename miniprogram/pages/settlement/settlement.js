@@ -8,7 +8,9 @@ Page({
    */
   data: {
     address: {},
-    commodities: []
+    commodities: [],
+    footerHeight: 50,
+    totalPrice: 0
   },
   toAddress() {
     wx.setStorage({
@@ -24,10 +26,22 @@ Page({
       }
     })
   },
+  // 获取 chooseAddress 选择的地址数据
+  getChooseAddress(newAddress) {
+    this.setData({
+      address: newAddress
+    })
+  },
+  // 获取购物车传进来的商品
   getCommodities(oArray) {
+    let totalPrice = 0
     let that = this
+    oArray.forEach(item => {
+      totalPrice += item.price * item.number
+    })
     that.setData({
-      commodities:oArray
+      commodities:oArray,
+      totalPrice
     })
   },
   /**
@@ -35,19 +49,8 @@ Page({
    */
   onLoad: function (options) {
     let self = this
-    if(options.commodityArray) {
-      let myArray = JSON.parse(options.commodityArray)
-      self.getCommodities(myArray)
-    }
-    else {
-      let address = JSON.parse(options.address)
-      let commodities = wx.getStorageSync('commodities')
-      this.setData({
-        commodities,
-        address
-      })
-    }
-    
+    let myArray = JSON.parse(options.commodityArray)
+    self.getCommodities(myArray)
   },
 
   /**

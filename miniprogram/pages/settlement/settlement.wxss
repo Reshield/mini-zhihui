@@ -13,22 +13,18 @@
   border-radius: 20rpx;
   margin-bottom: 2%;
 }
-
 .cell-box {
   flex-direction: row;
   align-content: center;
   justify-content: space-between;
   padding: 10rpx 0rpx;
 }
-
 .address-text {
   margin-left: 2%;
 }
-
 .address-icon {
   margin-right: 2%;
 }
-
 .cell-commodity {
   flex-direction: column;
   align-items: center;
@@ -77,6 +73,7 @@
 
 .detail-price {
   color: #FF6539;
+  font-weight: 600;
 }
 
 .number-box {
@@ -114,4 +111,41 @@
   display: flex;
   width: 90%;
   font-size: 28rpx;
+}
+
+ .cart-footer, .footer-radio, .footer-button, .pay-button {
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-button, .pay-button {
+  align-items: center;
+  justify-content: center;
+}
+
+.cart-footer {
+  position: fixed;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  bottom: 0;
+  box-shadow: 0rpx -2rpx 14rpx #CACACA;
+}
+
+.footer-radio {
+  margin-left: 20rpx;
+}
+
+.footer-button {
+  height: 100%;
+  width: 30%;
+}
+
+.pay-button {
+  width: 90%;
+  height: 60%;
+  background-color: #07C160;
+  color: #ffffff;
+  border-radius: 100rpx;
 }

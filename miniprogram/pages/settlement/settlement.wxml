@@ -4,6 +4,11 @@
     <view class="address-text">请选择收货地址</view>
     <mp-icon class="address-icon" icon="arrow" color="#AAAAAA" size="{{14}}"></mp-icon>
   </view>
+  <view class="address-box" wx:if="{{address.region}}">
+    <view class="address-weight">
+      收货地址：{{address.region}} {{address.address}}
+    </view>
+  </view>
   <block wx:for="{{commodities}}" wx:key="index">
     <view class="cell-commodity">
       <view class="cell-weight">
@@ -28,9 +33,35 @@
       </view>
     </view>
   </block>
-  <view class="address-box">
-    <view class="address-weight">
-      收货地址：{{address.region}} {{address.address}}
+  <view class="cell-commodity">
+    <view class="cell-weight">
+      <view class="number-box">
+        <view>
+          支付方式
+        </view>
+        <view>
+          微信支付
+        </view>
+      </view>
+      <view class="number-box">
+        <view>
+          运费
+        </view>
+        <view>
+          ￥+0
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="cart-footer" style="height: {{footerHeight}}px">
+  <view class="footer-radio">
+    实付金额：<text style="color: #FF6539; font-weight: 600;">￥{{totalPrice}}</text>
+  </view>
+  <view class="footer-button" bindtap="toSettlement">
+    <view class="pay-button">
+      立即支付
     </view>
   </view>
 </view>
