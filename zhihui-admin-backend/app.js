@@ -1,23 +1,29 @@
 const Koa = require('koa');
-const Router = require('@koa/router')
 const koaBody = require('koa-body');
 const cors = require('koa2-cors');
 const app = new Koa();
-const router = new Router()
-
 // 云环境 ID
 const ENV = 'mini-zhihui-fmj55'
+const test = require('./router/test.js')
 
-// 跨域  允许前端跨域
-// app.use(cors({
-//   origin: ['http://localhost:9528'],
-//   credentials: true
-// }))
+// 具体参数我们在后面进行解释
+app.use(cors({
+  origin: function (ctx) {
+    if (ctx.url === '/test') {
+        return "*"; // 允许来自所有域名请求
+    }
+    return 'http://localhost:9527'; // 这样就能只允许 http://localhost:8080 这个域名的请求了
+  },
+  exposeHeaders: ['WWW-Authenticate', 'Server-Authorization'],
+  maxAge: 5,
+  credentials: true,
+  allowMethods: ['GET', 'POST', 'DELETE'],
+  allowHeaders: ['Content-Type', 'Authorization', 'Accept'],
+}))
 
 // 接收post参数解析
 app.use(koaBody({
-  // 前端的post参数能传到后端
-  multipart: true,
+  multipart: true, // 前端的post参数能传到后端
 }))
 
 app.use(async (ctx, next) => {
@@ -27,24 +33,9 @@ app.use(async (ctx, next) => {
   await next()
 })
 
-// response
-app.use(ctx => {
-  ctx.body = 'Hello Koa';
-});
-
-const callCloudDB = require('./utils/callCloudDB')
-
-// const getAddress = async (ctx, next) => {
-//   const res = await callCloudDB(ctx, 'address')
-//   console.log(res)
-// }
-
-// getAddress()
-
-app.use(router.routes())
-// 允许路由的get post等方法
-app.use(router.allowedMethods())
+test(app)
 
 app.listen(3000, () => {
   console.log('服务开启在3000端口')
 })
+module.exports = app
